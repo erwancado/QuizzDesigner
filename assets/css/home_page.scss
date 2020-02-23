@@ -1,0 +1,29 @@
+$shadowColor : #343A40;
+$shadowColorHover : #67737e;
+
+.quizzList {
+  margin-top: 5%;
+}
+
+.card-header{
+  padding: 0!important;
+  height: 20%;
+  background-image: linear-gradient(to bottom right, $shadowColorHover, $shadowColor);
+}
+
+.card-title{
+  margin: 0 auto;
+  vertical-align: center;
+  color: #FFFFFF;
+}
+
+.quizzCard {
+  background-color: #e6e6e6;
+  margin-bottom: 10%;
+  box-shadow: 4px 6px 5px 0px $shadowColor;
+}
+
+.quizzCard:hover {
+  background-color:  #FFFFFF;
+  box-shadow: 4px 6px 5px 0px $shadowColorHover;
+}
