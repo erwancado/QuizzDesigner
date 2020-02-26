@@ -20,10 +20,11 @@ $shadowColorHover : #67737e;
 .quizzCard {
   background-color: #e6e6e6;
   margin-bottom: 10%;
-  box-shadow: 4px 6px 5px 0px $shadowColor;
+  box-shadow: 0 12px 6px -6px $shadowColor;
 }
 
 .quizzCard:hover {
   background-color:  #FFFFFF;
-  box-shadow: 4px 6px 5px 0px $shadowColorHover;
+  box-shadow: 0 12px 6px -6px $shadowColorHover;
+  transform: scale(1.01);
 }
