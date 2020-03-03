@@ -3,38 +3,58 @@
 {% block title %}Hello CreateQuizzPageController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
 
-<div class="example-wrapper">
-    <div class="row">
-        <h1 class="col-6">Nouveau Quizz</h1>
-        <div class="col-6 text-center">
-            <button type="button" class="btn btn-outline-success" id="newQuestion"><i class="fas fa-plus"></i> Question</button>
+    <div class="container col-lg-10">
+        <div class="row">
+            <h1 class="col-6">Nouveau Quizz</h1>
+            <div class="col-6 text-center">
+                <button type="button" class="btn btn-outline-success" id="newQuestion" data-toggle="modal" data-target="#choseQuestionModal"><i class="fas fa-plus"></i> Question</button>
+            </div>
         </div>
-    </div>
 
-    <hr>
-    <div class="container" id="quizz">
-        <div id="question1" class="questionCard">
-            <div class="jumbotron jumbotron-fluid" id="jumbotronQ1">
-                <div class="container">
-                    <form action="">
-                        <div class="row">
-                            <input type="text" placeholder="Question" class="col-6">
-                            <div class="col-6">
-                                <label for="difficulte">Difficulté</label>
-                                <input id="difficulte" type="number" placeholder="Question" class="col-6" min="0" max="10">
+        <hr>
+        <div class="container col-lg-10" id="quizz">
+            <div id="question1" class="questionCard">
+                <div class="jumbotron jumbotron-fluid" id="jumbotronQ1">
+                    <div class="container">
+                        <form action="">
+                            <div class="row">
+                                <input type="text" placeholder="Question" class="col-6">
+                                <div class="col-6">
+                                    <label for="difficulte">Difficulté</label>
+                                    <input id="difficulte" type="number" placeholder="Question" class="col-6" min="0" max="10">
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+    <div class="modal fade" id="choseQuestionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}

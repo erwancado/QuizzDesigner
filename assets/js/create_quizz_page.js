@@ -4,23 +4,30 @@ $(document).ready(function () {
 
     var nbQuestion = 1;
 
-
-    var templatePath = "templates/questionTemplate/";
-
-    var valeur2 = $.get(templatePath + "questionTemplate.html.twig", function (data) {
-        console.log(data);
-    });
-
-
-
-    var valeur = document.getElementById("jumbotronQ1").innerHTML;
-    //console.log(valeur);
     $('#newQuestion').click(function () {
-        $('#quizz').append($('<div>', {id : ('question' + (++nbQuestion)), class: 'questionCard'}));
-        $('#question'+ nbQuestion).append($('<div>', {id : ('jumbotronQ'+nbQuestion), class: 'jumbotron jumbotron-fluid'}));
-        //$('jumbotronQ'+nbQuestion).html($('jumbotronQ1').html());
-        $('#jumbotronQ'+nbQuestion).append(valeur);
-
+        //$('#quizz').append(insertOpenQuestion((++nbQuestion)));
+        $('#choseQuestionModal').modal(options)
     })
 
 });
+
+function insertOpenQuestion(num) {
+
+    var resultat = '<div id=\"question'+ num + '\" class="questionCard">\n' +
+        '            <div class="jumbotron jumbotron-fluid" id="jumbotronQ' + num + '">\n' +
+        '                <div class="container">\n' +
+        '                    <form action="">\n' +
+        '                        <div class="row">\n' +
+        '                            <input type="text" placeholder="Question" class="col-6">\n' +
+        '                            <div class="col-6">\n' +
+        '                                <label for="difficulte">Difficulté</label>\n' +
+        '                                <input id="difficulte" type="number" placeholder="Question" class="col-6" min="0" max="10">\n' +
+        '                            </div>\n' +
+        '                        </div>\n' +
+        '                    </form>\n' +
+        '                </div>\n' +
+        '            </div>\n' +
+        '        </div>';
+
+    return resultat;
+}
