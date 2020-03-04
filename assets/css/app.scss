@@ -1,10 +1,20 @@
 @import "~bootstrap/scss/bootstrap";
 @import "home_page";
 @import "create_quizz_page";
+@import "login";
+
+$QDBlue : #405DE6;
+$QDDarkPurple : #5851DB;
+$QDPurple : #833AB4;
+$QDPink : #C13584;
+$QDRed : #E1306C;
+
 
 body {
-    background-color: lightgray;
+    background: linear-gradient(.25turn,$QDBlue,$QDDarkPurple,$QDPurple,$QDPink,$QDRed);
+    color: #FFFFFF;
     padding-top: 70px;
     padding-left: 2%;
     padding-right: 2%;
+    font-family: 'Lobster', cursive;
 }

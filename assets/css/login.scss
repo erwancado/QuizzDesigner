@@ -1,0 +1,50 @@
+.QuizzDesignerTitle{
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.login{
+  position: absolute;
+  top: 50%;
+  left: 35%;
+  background-color: #707070;
+  border-radius: 15px;
+  align-content: center;
+  width: 33%;
+}
+
+.loginForm{
+  margin-bottom: 5vh;
+}
+
+.form-control {
+  border-radius: 10px!important;
+}
+
+.forgotPassword{
+  margin: 0 auto;
+  text-align: center;
+}
+
+a{
+  color: #bfbfbf;
+}
+
+a:hover{
+  color: #bfbfbf;
+  text-decoration: none;
+}
+
+.register{
+  margin: 0 auto;
+  text-align: center;
+}
+
+
+.submitButton{
+  width: 50%;
+  margin-bottom: 2vh;
+  margin-left: 25%;
+  margin-top: 1vh;
+}

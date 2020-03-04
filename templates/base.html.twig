@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
+            <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
     </head>
@@ -13,7 +14,7 @@
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
                 <div class="container">
                     {% if controller_name == "HomePageController" %}
-                        <a class="navbar-brand" href="#body"><i class="fab fa-sketch"></i></i> QuizzDesigner</a>
+                        <a class="navbar-brand" href="#body"><i class="fab fa-sketch"></i> QuizzDesigner</a>
                     {% else %}
                         <a class="navbar-brand" href="{{ path('home_page') }}"><i class="fab fa-sketch"></i></i> QuizzDesigner</a>
                     {% endif %}
