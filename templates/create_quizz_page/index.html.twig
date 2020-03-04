@@ -37,21 +37,49 @@
     <hr>
     <div class="container">
         <form method="post" action="" id="quizz">
+            <input class="form-control form-control-lg" type="text" placeholder="Titre du questionnaire" name="QuizzTitle">
             <input type="submit" class="btn btn-outline-success" value="Créer le quizz">
         <div id="question1" class="questionCard">
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
-                        <div class="row">
+                    <div class="text-right">
+                    <button type="button" class="btn btn-outline-danger" id="btn-del-1">Supprimer</button>
+                    </div>
+                        <div class="row mt-2">
                             <input type="text" placeholder="Question" class="col-6" name="QuestionText1">
                             <div class="col-6">
                                 <label for="difficulte">Difficulté</label>
                                 <input id="difficulte" type="number" placeholder="Difficulté" class="col-6" min="0" max="10" name="QuestionDifficulty1">
                             </div>
                         </div>
-                    <button type="button" class="btn btn-outline-danger" id="btn-del-1">Supprimer</button>
+
                 </div>
             </div>
         </div>
+            {#<div id="question2" class="questionCard">
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                        <div class="text-right">
+                            <button type="button" class="btn btn-outline-danger" id="btn-del-1">Supprimer</button>
+                        </div>
+                        <div class="row mt-2">
+                        <input type="text" placeholder="Question" class="col-6" name="QuestionText2">
+                            <div class="col-6">
+                                <label for="difficulte">Difficulté</label>
+                                <input id="difficulte" type="number" placeholder="Difficulté" class="col-6" min="0" max="10" name="QuestionDifficulty1">
+                            </div>
+                        </div>
+                        <div class="row mt-2" id="answersQ2">
+                            <div class="form-check col-6 answer">
+                                <input class="form-check-input align-middle" type="checkbox" value="Correct" name="Q2-A1-check">
+                                <input type="text" placeholder="Réponse" class="form-control" name="Q2-A1-txt">
+                            </div>
+                            <button type="button" class="btn btn-outline-dark" id="addAnswerQ1"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>#}
+
         </form>
     </div>
 </div>
