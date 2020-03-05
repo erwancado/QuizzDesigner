@@ -1,17 +1,31 @@
-.QuizzDesignerTitle{
+body{
+  overflow: hidden;
+  padding: 0;
+}
+
+#c{
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  margin: 0 auto;
+  height: 100%;
+}
+
+.QuizzDesignerTitle{
+  position: absolute;
+  top: 15vh;
+  left: 32vw;
   text-align: center;
 }
 
 .login{
   position: absolute;
-  top: 50%;
-  left: 35%;
+  top: 50vh;
+  left: 34vw;
   background-color: #707070;
   border-radius: 15px;
   align-content: center;
-  width: 33%;
+  width: 33vw;
 }
 
 .loginForm{
