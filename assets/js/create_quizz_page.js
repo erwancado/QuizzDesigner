@@ -9,6 +9,7 @@ document.getElementById("delQuizz").onclick=deleteAll;
 document.getElementById("btn-del-1").addEventListener('click', function(){
     deleteQuestion(1);
 });
+
 function addQuestion(qcm){
     var numItems = $('.questionCard').length;
     let idQuestion=numItems+1;

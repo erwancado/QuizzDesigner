@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+{% block header %}{% endblock %}
+{% block body %}
+    <canvas id="c"></canvas>
+    <div class="QuizzDesignerTitle">
+        <i class="fab fa-sketch" style="font-size: 100px"></i>
+        <h1 style="font-size: 100px">QuizzDesigner</h1>
+    </div>
+
+    <div class="container registerform">
+        {{ form_start(registrationForm) }}
+        <h1 class="h3 mb-3 font-weight-normal text-center">Register</h1>
+        <br>
+        <div class="container loginForm">
+            <div class="row">
+                {{ form_widget(registrationForm.email, {'attr' : {'class' : 'input form-control col-lg-6', 'placeholder' : 'Email'}}) }}
+            </div>
+
+
+
+            {{ form_row(registrationForm.plainPassword) }}
+            {{ form_row(registrationForm.nom) }}
+            {{ form_row(registrationForm.prenom) }}
+            {#{{ form_row(registrationForm.agreeTerms) }}#}
+
+        </div>
+
+        <button class="btn btn-lg btn-outline-light submitButton" type="submit">
+            Ok
+        </button>
+        {{ form_end(registrationForm) }}
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('word_animation')}}
+{% endblock %}

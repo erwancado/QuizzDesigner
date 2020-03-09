@@ -53,37 +53,20 @@ window.onload = function(argument) {
 
             for (var i = 0; i < words_attr.length; i++) {
 
-
                 //si le mot sort à droite de l'écran
                 if (words_attr[i].x > w) {
-                    /*words_attr[i].x = -words_attr[i].width;
-                    words_attr[i].y = Math.random()*h;
-                    words_attr[i].speedX = getRandomInt(-3,3);
-                    words_attr[i].speedY = getRandomInt(-3,3);*/
                     appear(words_attr[i],-words_attr[i].width, Math.random()*h);
                 }
                 //si le mot sort à gauche de l'écran
                 else if (words_attr[i].x+words_attr[i].width < 0){
-                    /*words_attr[i].x = words_attr[i].width;
-                    words_attr[i].y = Math.random()*h;
-                    words_attr[i].speedX = getRandomInt(-3,3);
-                    words_attr[i].speedY = getRandomInt(-3,3);*/
                     appear(words_attr[i],w, Math.random()*h);
                 }
                 //si le mot sort en haut de l'écran
                 else if (words_attr[i].y < -words_attr[i].height){
-                    /*words_attr[i].x = Math.random()*w;
-                    words_attr[i].y = words_attr[i].height;
-                    words_attr[i].speedX = getRandomInt(-3,3);
-                    words_attr[i].speedY = getRandomInt(-3,3);*/
                     appear(words_attr[i],Math.random()*w, h);
                 }
                 //si le mot sort en bas de l'écran
                 else if (words_attr[i].y+words_attr[i].height > h){
-                    /*words_attr[i].x = Math.random()*w;
-                    words_attr[i].y = -words_attr[i].height;
-                    words_attr[i].speedX = getRandomInt(-3,3);
-                    words_attr[i].speedY = getRandomInt(-3,3);*/
                     appear(words_attr[i],Math.random()*w, -words_attr[i].height);
                 }
                 else{

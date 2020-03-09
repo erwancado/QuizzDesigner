@@ -14,6 +14,8 @@ class HomePageController extends AbstractController
      */
     public function index()
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $quizzList = $this->getDoctrine()->getRepository(Quizz::class)->findAll();
 
         return $this->render('home_page/index.html.twig', [

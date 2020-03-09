@@ -49,7 +49,7 @@
                 </div>
             #}
             <div class="register">
-                <a href="">Register now !</a>
+                <a href="{{ path('app_register') }}">Register now !</a>
             </div>
             <button class="btn btn-lg btn-outline-light submitButton" type="submit">
                 Sign in
@@ -60,5 +60,5 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-    {{ encore_entry_script_tags('login')}}
+    {{ encore_entry_script_tags('word_animation')}}
 {% endblock %}
