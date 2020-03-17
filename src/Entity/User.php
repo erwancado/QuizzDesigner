@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -27,7 +29,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = ["ROLE_USER"];
+    private $roles = ["ROLE_ADMIN"];
 
     /**
      * @var string The hashed password
@@ -44,6 +46,22 @@ class User implements UserInterface
      * @ORM\Column(type="text")
      */
     private $Prenom;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Partie", mappedBy="user", orphanRemoval=true)
+     */
+    private $parties;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Quiz", mappedBy="user")
+     */
+    private $quizzes;
+
+    public function __construct()
+    {
+        $this->parties = new ArrayCollection();
+        $this->quizzes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -143,6 +161,68 @@ class User implements UserInterface
     public function setPrenom(string $Prenom): self
     {
         $this->Prenom = $Prenom;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Partie[]
+     */
+    public function getParties(): Collection
+    {
+        return $this->parties;
+    }
+
+    public function addParty(Partie $party): self
+    {
+        if (!$this->parties->contains($party)) {
+            $this->parties[] = $party;
+            $party->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParty(Partie $party): self
+    {
+        if ($this->parties->contains($party)) {
+            $this->parties->removeElement($party);
+            // set the owning side to null (unless already changed)
+            if ($party->getUser() === $this) {
+                $party->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Quiz[]
+     */
+    public function getQuizzes(): Collection
+    {
+        return $this->quizzes;
+    }
+
+    public function addQuiz(Quiz $quiz): self
+    {
+        if (!$this->quizzes->contains($quiz)) {
+            $this->quizzes[] = $quiz;
+            $quiz->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuiz(Quiz $quiz): self
+    {
+        if ($this->quizzes->contains($quiz)) {
+            $this->quizzes->removeElement($quiz);
+            // set the owning side to null (unless already changed)
+            if ($quiz->getUser() === $this) {
+                $quiz->setUser(null);
+            }
+        }
 
         return $this;
     }

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomePageController!{% endblock %}
+{% block title %}QuizzDesigner{% endblock %}
 
 {% block header %} {{ parent() }} {% endblock %}
 
@@ -10,12 +10,14 @@
         .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
     </style>
     <div>
-        <h1>Bienvenue dans Quizz Designer</h1>
+        <h1 class="title">Bienvenue dans Quizz Designer</h1>
         <div class="row">
             <h3 class="col-6">Voici la liste des quizz disponibles</h3>
+            {% if app.user.roles[0] == "ROLE_ADMIN" %}
             <div class="col-6 text-center">
                 <a href="{{ path('create_quizz_page') }}"><button type="button" class="btn btn-outline-success" onclick=""><i class="fas fa-plus"></i> Nouveau Quizz</button></a>
             </div>
+            {% endif %}
         </div>
         <div class="container quizzList">
             <div class="row">

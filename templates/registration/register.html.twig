@@ -3,44 +3,50 @@
 {% block title %}Register{% endblock %}
 {% block header %}{% endblock %}
 {% block body %}
-    <canvas id="c"></canvas>
-    <div class="QuizzDesignerTitle">
-        <i class="fab fa-sketch" style="font-size: 100px"></i>
-        <h1 style="font-size: 100px">QuizzDesigner</h1>
-    </div>
-
-    <div class="container registerform">
-        {{ form_start(registrationForm) }}
-        <h1 class="h3 mb-3 font-weight-normal text-center">Register</h1>
-        <br>
-        <div class="container loginForm">
-            <div class="row justify-content-around">
-                {{ form_widget(registrationForm.email, {'attr' : {'class' : 'input form-control col-lg-5', 'placeholder' : 'Email'}}) }}
-
-                {{ form_widget(registrationForm.ConfirmEmail, {'attr' : {'class' : 'input form-control col-lg-5', 'placeholder' : 'Confirm Email'}}) }}
-            </div>
-            <br>
-            <div class="row justify-content-around">
-                {{ form_widget(registrationForm.plainPassword, {'attr' : {'class' : 'input form-control col-lg-5', 'placeholder' : 'Password'}}) }}
-
-                {{ form_widget(registrationForm.ConfirmPassword, {'attr' : {'class' : 'input form-control col-lg-5', 'placeholder' : 'Confirm your Password'}}) }}
-            </div>
-            <br>
-            <div class="row justify-content-around">
-                {{ form_widget(registrationForm.prenom, {'attr' : {'class' : 'input form-control col-lg-5', 'placeholder' : 'First Name'}}) }}
-
-                {{ form_widget(registrationForm.nom, {'attr' : {'class' : 'input form-control col-lg-5', 'placeholder' : 'Last Name'}}) }}
+    <div class="Body">
+        <canvas id="c"></canvas>
+        <div class="container loginPage">
+            <div class="QuizzDesignerTitle">
+                <i class="fab fa-sketch" style="font-size: 100px"></i>
+                <h1 style="font-size: 100px">QuizzDesigner</h1>
             </div>
 
+            <div class="container registerform">
+                {{ form_start(registrationForm) }}
+                <h1 class="h3 mb-3 font-weight-normal text-center title">Register</h1>
+                <br>
+                <div class="container loginForm">
+                    <div class="row justify-content-around" id="emailDiv">
+                        {{ form_widget(registrationForm.email, {'attr' : {'class' : 'input form-control col-5', 'placeholder' : 'Email'}}) }}
+                        {{ form_widget(registrationForm.ConfirmEmail, {'attr' : {'class' : 'input form-control col-5', 'placeholder' : 'Confirm Email'}}) }}
+                    </div>
+                    <div class="divError" id="divErrorEmail"></div>
+                    <div class="row justify-content-around" id="passwordDiv">
+                        {{ form_widget(registrationForm.plainPassword, {'attr' : {'class' : 'input form-control col-5', 'placeholder' : 'Password'}}) }}
+
+                        {{ form_widget(registrationForm.ConfirmPassword, {'attr' : {'class' : 'input form-control col-5', 'placeholder' : 'Confirm your Password'}}) }}
+                    </div>
+                    <div class="divError" id="divErrorPassword"></div>
+                    <div class="row justify-content-around">
+                        {{ form_widget(registrationForm.prenom, {'attr' : {'class' : 'input form-control col-5', 'placeholder' : 'First Name'}}) }}
+
+                        {{ form_widget(registrationForm.nom, {'attr' : {'class' : 'input form-control col-5', 'placeholder' : 'Last Name'}}) }}
+                    </div>
+
+                </div>
+                <div class="register">
+                    <a href="{{ path('app_login') }}">Already have an account ? Login here</a>
+                </div>
+                <button class="btn btn-lg btn-outline-light submitButton" type="submit">
+                    Ok
+                </button>
+                {{ form_end(registrationForm) }}
+            </div>
         </div>
-
-        <button class="btn btn-lg btn-outline-light submitButton" type="submit">
-            Ok
-        </button>
-        {{ form_end(registrationForm) }}
     </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('word_animation')}}
+    {{ encore_entry_script_tags('register_validation')}}
 {% endblock %}

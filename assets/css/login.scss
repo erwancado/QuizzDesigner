@@ -1,10 +1,25 @@
-body{
+@import "~rfs/scss";
+
+.Body{
+  position: absolute;
+  top: 0;
+  left: 0;
   overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+.loginPage{
+  position: relative;
+  top: 0;
+  left: 0;
   padding: 0;
+  height: 100%;
+  width: 100%;
 }
 
 #c{
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -12,24 +27,25 @@ body{
 }
 
 .QuizzDesignerTitle{
-  position: absolute;
-  top: 15vh;
-  left: 32vw;
+  @include margin-top(4rem);
+  @include margin-left(0 auto);
+  @include font-size(5rem);
   text-align: center;
+  margin-bottom: 5vh;
 }
 
 .login{
-  position: absolute;
-  top: 50vh;
-  left: 34vw;
+  @include rfs(40rem, width);
+  @include margin( 2rem auto 0);
+  @include padding(1rem);
+  @include rfs(1rem, border-radius);
+  max-width: 540px;
   background-color: #707070;
-  border-radius: 15px;
   align-content: center;
-  width: 33vw;
 }
 
 .loginForm{
-  margin-bottom: 5vh;
+  margin-bottom: 2vh;
 }
 
 .form-control {

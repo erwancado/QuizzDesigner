@@ -19,6 +19,7 @@
     },
     "dependencies": {
         "jquery": "^3.4.1",
-        "popper.js": "^1.16.1"
+        "popper.js": "^1.16.1",
+        "rfs": "^9.0.2"
     }
 }

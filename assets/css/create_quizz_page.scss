@@ -1,8 +1,27 @@
+$bodyPadding : 90px;
+
 .questionCard{
   margin-top : 50px;
 }
 
 .jumbotron{
-  border-radius: 5px;
+  border-radius: 10px;
   padding-left: 5%;
+  background-color: #707070;
+}
+
+.head{
+  margin-bottom: 5rem;
+}
+
+.back{
+  position: absolute;
+  top: $bodyPadding;
+  left: 50px;
+  transition: 0.5s;
+
+}
+
+.back:hover{
+  color: #FFFFFF;
 }

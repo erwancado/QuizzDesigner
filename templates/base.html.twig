@@ -12,17 +12,17 @@
 
     <header>
         {% block header %}
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
+            <nav class="navbar navbar-expand-lg fixed-top" role="navigation">
                 <div class="container">
                     {% if controller_name == "HomePageController" %}
-                        <a class="navbar-brand" href="#body"><i class="fab fa-sketch"></i> QuizzDesigner</a>
+                        <a class="navbar-brand QuizzDesignerNav" href="#body"><i class="fab fa-sketch"></i> QuizzDesigner</a>
                     {% else %}
-                        <a class="navbar-brand" href="{{ path('home_page') }}"><i class="fab fa-sketch"></i></i> QuizzDesigner</a>
+                        <a class="navbar-brand QuizzDesignerNav" href="{{ path('home_page') }}"><i class="fab fa-sketch"></i> QuizzDesigner</a>
                     {% endif %}
-                    <div class="collapse navbar-collapse" id="exCollapsingNavbar">
+                    <div {#class="collapse navbar-collapse" id="exCollapsingNavbar"#}>
                         <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
                             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                            <button type="button" class="btn btn-outline-secondary"><i class="fas fa-user"></i>  {{app.user.prenom}}</button>
+                            <button type="button" class="btn btn-outline-light"><i class="fas fa-user"></i>  {{app.user.prenom}}</button>
                             {% endif %}
                             {#<li class="dropdown order-1">
                                 <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">{{app.user.prenom}}</button>

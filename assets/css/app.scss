@@ -3,6 +3,7 @@
 @import "create_quizz_page";
 @import "login";
 @import "register";
+@import "~rfs/scss";
 
 $QDBlue : #405DE6;
 $QDDarkPurple : #5851DB;
@@ -10,12 +11,43 @@ $QDPurple : #833AB4;
 $QDPink : #C13584;
 $QDRed : #E1306C;
 
+$background-color : #707070;
+
+$bodyPadding : 90px;
 
 body {
     background: linear-gradient(.25turn,$QDBlue,$QDDarkPurple,$QDPurple,$QDPink,$QDRed);
-    color: #FFFFFF;
-    padding-top: 70px;
+    color: white;
+    padding-top: $bodyPadding;
     padding-left: 2%;
     padding-right: 2%;
     font-family: 'Lobster', cursive;
 }
+
+.jumbotron{
+    background-color: $background-color!important;
+}
+
+.title{
+    @include font-size(4rem);
+    font-family: 'Lobster', cursive;
+}
+
+.QuizzDesignerNav{
+    @include font-size(3rem);
+}
+
+.navbar{
+    background-color: transparent;
+    color: white;
+}
+
+.navbar-brand{
+    color: white!important;
+}
+
+input{
+    border-radius: 10px!important;
+}
+
+

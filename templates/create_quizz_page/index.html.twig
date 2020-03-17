@@ -1,88 +1,98 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Créez votre Quizz!{% endblock %}
+{% block header %} {{ parent() }} {% endblock %}
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-<div class="example-wrapper">
-    <div class="row">
-        <h1 class="col-6">Nouveau Quizz</h1>
-        <div class="col-3 text-center">
-            <button type="button" class="btn btn-outline-success" id="newQuestion" data-toggle="modal" data-target="#modalTypeQuestion"><i class="fas fa-plus"></i> Question</button>
-        </div>
-        <!-- Modal -->
-        <div class="modal fade" id="modalTypeQuestion" tabindex="-1" role="dialog" aria-labelledby="Type de question" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="titreModal">Choix du type de question</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" id="newQO">Question ouverte</button>
-                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal" id="newQCM">Question à choix multiples</button>
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 1200px; width: 95%;}
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+    <div class="example-wrapper">
+
+        <div class="head row">
+            <a class="back" href="{{ path('home_page') }}"><i class="fas fa-arrow-circle-left" style="font-size: 50px"></i></a>
+            <div class="container">
+                <div class="row">
+                    <h1 class="title col-8">Nouveau Quizz</h1>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="modalTypeQuestion" tabindex="-1" role="dialog" aria-labelledby="Type de question" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="titreModal">Choix du type de question</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <button type="button" class="btn btn-outline-primary" data-dismiss="modal" id="newQO">Question ouverte</button>
+                            <button type="button" class="btn btn-outline-primary" data-dismiss="modal" id="newQCM">Question à choix multiples</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-3 text-center">
-            <button type="button" class="btn btn-outline-danger" id="delQuizz"><i class="fas fa-ban"></i> Vider le quizz</button>
-        </div>
-    </div>
+            {# fin Modale #}
 
-    <hr>
-    <div class="container">
-        <form method="post" action="" id="quizz">
-            <input class="form-control form-control-lg" type="text" placeholder="Titre du questionnaire" name="QuizzTitle">
-            <input type="submit" class="btn btn-outline-success" value="Créer le quizz">
-        <div id="question1" class="questionCard">
-            <div class="jumbotron jumbotron-fluid">
-                <div class="container">
-                    <div class="text-right">
-                    <button type="button" class="btn btn-outline-danger" id="btn-del-1">Supprimer</button>
+        </div>
+
+        <div class="container">
+            <form method="post" action="" id="quizz">
+                <div class="row justify-content-around">
+                    <input class="form-control form-control-lg col-6" type="text" placeholder="Titre du Quizz" name="QuizzTitle">
+                    <input class="btn btn-outline-success col-2" type="submit" value="Créer le quizz">
+                    <button type="button" class="btn btn-outline-danger col-2" id="delQuizz"><i class="fas fa-ban"></i> Vider le quizz</button>
+                </div>
+
+                <div id="question1" class="questionCard">
+                    <div class="jumbotron jumbotron-fluid">
+                        <div class="container">
+                            <div class="text-right">
+                                <button type="button" class="btn btn-outline-danger" id="btn-del-1">Supprimer</button>
+                            </div>
+                            <div class="row mt-2">
+                                <input type="text" placeholder="Question" class="col-6" name="QuestionText1">
+                                <div class="col-6">
+                                    <label for="difficulte">Difficulté</label>
+                                    <input id="difficulte" type="number" placeholder="Difficulté" class="col-6" min="0" max="10" name="QuestionDifficulty1">
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-                        <div class="row mt-2">
-                            <input type="text" placeholder="Question" class="col-6" name="QuestionText1">
-                            <div class="col-6">
-                                <label for="difficulte">Difficulté</label>
-                                <input id="difficulte" type="number" placeholder="Difficulté" class="col-6" min="0" max="10" name="QuestionDifficulty1">
+                </div>
+                {#<div id="question2" class="questionCard">
+                    <div class="jumbotron jumbotron-fluid">
+                        <div class="container">
+                            <div class="text-right">
+                                <button type="button" class="btn btn-outline-danger" id="btn-del-1">Supprimer</button>
+                            </div>
+                            <div class="row mt-2">
+                            <input type="text" placeholder="Question" class="col-6" name="QuestionText2">
+                                <div class="col-6">
+                                    <label for="difficulte">Difficulté</label>
+                                    <input id="difficulte" type="number" placeholder="Difficulté" class="col-6" min="0" max="10" name="QuestionDifficulty1">
+                                </div>
+                            </div>
+                            <div class="row mt-2" id="answersQ2">
+                                <div class="form-check col-6 answer">
+                                    <input class="form-check-input align-middle" type="checkbox" value="Correct" name="Q2-A1-check">
+                                    <input type="text" placeholder="Réponse" class="form-control" name="Q2-A1-txt">
+                                </div>
+                                <button type="button" class="btn btn-outline-dark" id="addAnswerQ1"><i class="fas fa-plus"></i></button>
                             </div>
                         </div>
+                    </div>
+                </div>#}
 
-                </div>
+            </form>
+            <div class="row justify-content-around text-center">
+                <button type="button" class="btn btn-outline-success" id="newQuestion" data-toggle="modal" data-target="#modalTypeQuestion"><i class="fas fa-plus"></i> Ajouter une Question</button>
             </div>
         </div>
-            {#<div id="question2" class="questionCard">
-                <div class="jumbotron jumbotron-fluid">
-                    <div class="container">
-                        <div class="text-right">
-                            <button type="button" class="btn btn-outline-danger" id="btn-del-1">Supprimer</button>
-                        </div>
-                        <div class="row mt-2">
-                        <input type="text" placeholder="Question" class="col-6" name="QuestionText2">
-                            <div class="col-6">
-                                <label for="difficulte">Difficulté</label>
-                                <input id="difficulte" type="number" placeholder="Difficulté" class="col-6" min="0" max="10" name="QuestionDifficulty1">
-                            </div>
-                        </div>
-                        <div class="row mt-2" id="answersQ2">
-                            <div class="form-check col-6 answer">
-                                <input class="form-check-input align-middle" type="checkbox" value="Correct" name="Q2-A1-check">
-                                <input type="text" placeholder="Réponse" class="form-control" name="Q2-A1-txt">
-                            </div>
-                            <button type="button" class="btn btn-outline-dark" id="addAnswerQ1"><i class="fas fa-plus"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>#}
-
-        </form>
     </div>
-</div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}

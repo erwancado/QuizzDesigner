@@ -24,28 +24,47 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
-            $user->setPassword(
-                $passwordEncoder->encodePassword(
-                    $user,
-                    $form->get('plainPassword')->getData()
-                )
-            );
-            //$user->setRoles(["ROLE_USER"]);
 
+            $email = $form->get('email')->getData();
+            $ConfirmedEmail = $form->get('ConfirmEmail')->getData();
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
+            if ($email == $ConfirmedEmail){
+                $password = $form->get('plainPassword')->getData();
+                $ConfirmedPassword = $form->get('ConfirmPassword')->getData();
 
-            // do anything else you need here, like send an email
+                if ($password == $ConfirmedPassword){
+                    // encode the plain password
+                    $user->setPassword(
+                        $passwordEncoder->encodePassword(
+                        $user,
+                        $form->get('plainPassword')->getData()
+                    )
+                    );
 
-            return $guardHandler->authenticateUserAndHandleSuccess(
-                $user,
-                $request,
-                $authenticator,
-                'main' // firewall name in security.yaml
-            );
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $entityManager->persist($user);
+                    $entityManager->flush();
+
+                    // do anything else you need here, like send an email
+
+                    return $guardHandler->authenticateUserAndHandleSuccess(
+                        $user,
+                        $request,
+                        $authenticator,
+                        'main' // firewall name in security.yaml
+                    );
+                }
+                else{
+                    $this->redirectToRoute("app_register");
+                    echo '<script>alert("Password does not match confirmed password")</script>';
+                }
+
+            }
+            else{
+                $this->redirectToRoute("app_register");
+                echo '<script>alert("Email does not match confirmed email")</script>';
+            }
+
         }
 
         return $this->render('registration/register.html.twig', [
