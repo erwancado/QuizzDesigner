@@ -57,10 +57,16 @@ class User implements UserInterface
      */
     private $quizzes;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Theme", mappedBy="user_id")
+     */
+    private $themes;
+
     public function __construct()
     {
         $this->parties = new ArrayCollection();
         $this->quizzes = new ArrayCollection();
+        $this->themes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -221,6 +227,37 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($quiz->getUser() === $this) {
                 $quiz->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Theme[]
+     */
+    public function getThemes(): Collection
+    {
+        return $this->themes;
+    }
+
+    public function addTheme(Theme $theme): self
+    {
+        if (!$this->themes->contains($theme)) {
+            $this->themes[] = $theme;
+            $theme->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTheme(Theme $theme): self
+    {
+        if ($this->themes->contains($theme)) {
+            $this->themes->removeElement($theme);
+            // set the owning side to null (unless already changed)
+            if ($theme->getUserId() === $this) {
+                $theme->setUserId(null);
             }
         }
 

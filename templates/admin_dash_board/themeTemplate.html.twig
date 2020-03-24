@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row justify-content-around">
+        <h1 class="col-8">Mes Themes :</h1>
+        <a class="col-1.5" href="{{ path('add_theme') }}"><button type="button" class="btn btn-success"><i class="fas fa-plus"></i> Créer Theme</button></a>
+    </div>
+    <br>
+    <div class="row justify-content-around">
+        {% for theme in themes %}
+            <div class="card text-center quizzCard col-3">
+                <div class="row">
+                    <div class="card-title col-8">
+                        <h1>{{ theme.nom }}</h1>
+                    </div>
+                    <a href="{{ path('delete_theme', {id : theme.id}) }}" class="deleteButton col-3"><button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

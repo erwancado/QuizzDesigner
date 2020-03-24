@@ -1,43 +1,57 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}
-            <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
-            <link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap" rel="stylesheet">
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap" rel="stylesheet">
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+</head>
 
-    <header>
-        {% block header %}
-            <nav class="navbar navbar-expand-lg fixed-top" role="navigation">
-                <div class="container">
-                    {% if controller_name == "HomePageController" %}
-                        <a class="navbar-brand QuizzDesignerNav" href="#body"><i class="fab fa-sketch"></i> QuizzDesigner</a>
-                    {% else %}
-                        <a class="navbar-brand QuizzDesignerNav" href="{{ path('home_page') }}"><i class="fab fa-sketch"></i> QuizzDesigner</a>
-                    {% endif %}
-                    <div {#class="collapse navbar-collapse" id="exCollapsingNavbar"#}>
-                        <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
-                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                            <button type="button" class="btn btn-outline-light"><i class="fas fa-user"></i>  {{app.user.prenom}}</button>
-                            {% endif %}
-                            {#<li class="dropdown order-1">
-                                <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">{{app.user.prenom}}</button>
-                            </li>#}
-                        </ul>
-                    </div>
+<header>
+    {% block header %}
+        <nav class="navbar navbar-expand-lg" role="navigation">
+            <div class="container">
+                {% if controller_name == "HomePageController" %}
+                    <a class="navbar-brand QuizzDesignerNav" href="#body"><i class="fab fa-sketch"></i> QuizzDesigner</a>
+                {% else %}
+                    <a class="navbar-brand QuizzDesignerNav" href="{{ path('home_page') }}"><i class="fab fa-sketch"></i> QuizzDesigner</a>
+                {% endif %}
+                <div {#class="collapse navbar-collapse" id="exCollapsingNavbar"#}>
+                    <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <div class="dropdown">
+                                <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-user"></i>  {{app.user.prenom}}
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    {% if app.user.roles[0] == "ROLE_ADMIN" %}
+                                        {% if controller_name == "HomePageController" %}
+                                            <a class="dropdown-item" href="{{ path('admin_dash_board')}}">Dash Board</a>
+                                        {% else %}
+                                            <a class="dropdown-item" href="{{ path('home_page')}}">Home</a>
+                                        {% endif %}
+                                    {% endif %}
+                                    <a class="dropdown-item" href="{{ path('app_logout') }}">Log out</a>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {#<li class="dropdown order-1">
+                            <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">{{app.user.prenom}}</button>
+                        </li>#}
+                    </ul>
                 </div>
-            </nav>
-        {% endblock %}
-    </header>
+            </div>
+        </nav>
+    {% endblock %}
+</header>
 
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </body>
+<body>
+{% block body %}{% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+</body>
 </html>

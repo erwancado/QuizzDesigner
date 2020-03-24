@@ -1,4 +1,5 @@
 var $ = require('jquery');
+
 $(document).ready(function () {
 
     var emailInput = $('#registration_form_email');

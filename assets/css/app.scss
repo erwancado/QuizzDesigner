@@ -3,22 +3,14 @@
 @import "create_quizz_page";
 @import "login";
 @import "register";
+@import "dashboard";
 @import "~rfs/scss";
-
-$QDBlue : #405DE6;
-$QDDarkPurple : #5851DB;
-$QDPurple : #833AB4;
-$QDPink : #C13584;
-$QDRed : #E1306C;
-
-$background-color : #707070;
-
-$bodyPadding : 90px;
+@import "variables";
 
 body {
     background: linear-gradient(.25turn,$QDBlue,$QDDarkPurple,$QDPurple,$QDPink,$QDRed);
     color: white;
-    padding-top: $bodyPadding;
+    /*padding-top: $bodyPadding;*/
     padding-left: 2%;
     padding-right: 2%;
     font-family: 'Lobster', cursive;
@@ -49,5 +41,10 @@ body {
 input{
     border-radius: 10px!important;
 }
+
+.vertical-center{
+    vertical-align: middle!important;
+}
+
 
 

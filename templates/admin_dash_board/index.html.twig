@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dash Board{% endblock %}
+
+{% block header %} {{ parent() }} {% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; width: 100%;}
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    <div class="example-wrapper">
+        <div class="row">
+            <ul class="list-group list-group-flush col-xl-2 col-sm-4 text-center">
+                <button type="button" id="myQuizButton" class="btn list-group-item list-group-item-action"><h1>Quiz  <span class="badge badge-pill badge-light">{{ quizzes|length }}</span></h1></button>
+                <button type="button" id="myThemeButton" class="btn list-group-item list-group-item-action"><h1>Themes <span class="badge badge-pill badge-light">{{ themes|length }}</span></h1></button>
+            </ul>
+            <div class="col-xl-10 col-sm-8" style="padding: 0">
+                <div id="quizTemplate">
+                    {{ include(quizTemplate) }}
+                </div>
+                <div id="themeTemplate" class="hide">
+                    {{ include(themeTemplate) }}
+                </div>
+                {% for message in app.flashes('succes') %}
+                    <div class="alert alert-success text-center" role="alert" id="flash-message">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('dash_board')}}
+{% endblock %}

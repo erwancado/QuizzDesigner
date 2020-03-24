@@ -2,13 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\Quizz;
+use App\Entity\Quiz;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomePageController extends AbstractController
 {
-    //@Route("/home/page", name="home_page")
     /**
      * @Route("/", name="home_page")
      */
@@ -16,7 +15,7 @@ class HomePageController extends AbstractController
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        $quizzList = $this->getDoctrine()->getRepository(Quizz::class)->findAll();
+        $quizzList = $this->getDoctrine()->getRepository(Quiz::class)->findAll();
 
         return $this->render('home_page/index.html.twig', [
             'controller_name' => 'HomePageController',
