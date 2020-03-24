@@ -19,7 +19,7 @@ class Theme
     private $id;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string")
      */
     private $Nom;
 
@@ -27,6 +27,12 @@ class Theme
      * @ORM\OneToMany(targetEntity="App\Entity\Quiz", mappedBy="theme")
      */
     private $quizzes;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="themes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user_id;
 
     public function __construct()
     {
@@ -77,6 +83,18 @@ class Theme
                 $quiz->setTheme(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUserId(): ?User
+    {
+        return $this->user_id;
+    }
+
+    public function setUserId(?User $user_id): self
+    {
+        $this->user_id = $user_id;
 
         return $this;
     }

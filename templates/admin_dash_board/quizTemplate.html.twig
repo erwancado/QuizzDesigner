@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="row justify-content-around">
+        <h1 class="col-8">Mes Quiz :</h1>
+        <a class="col-1.5" href="{{ path('create_quizz_page') }}"><button type="button" class="btn btn-success"><i class="fas fa-plus"></i> Créer Quiz</button></a>
+    </div>
+    <br>
+    <div class="row justify-content-start">
+        {% for quizz in quizzes %}
+            <div class="card text-center quizzCard col-3">
+                <div class="card-title">
+                    <h1>{{ quizz.nom }}</h1>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

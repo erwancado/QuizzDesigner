@@ -16,15 +16,3 @@ $shadowColorHover : #67737e;
   vertical-align: center;
   color: #FFFFFF;
 }
-
-.quizzCard {
-  background-color: #e6e6e6;
-  margin-bottom: 10%;
-  box-shadow: 0 12px 6px -6px $shadowColor;
-}
-
-.quizzCard:hover {
-  background-color:  #FFFFFF;
-  box-shadow: 0 12px 6px -6px $shadowColorHover;
-  transform: scale(1.01);
-}
