@@ -18,6 +18,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "bootstrap4-toggle": "^3.6.1",
         "jquery": "^3.4.1",
         "popper.js": "^1.16.1",
         "rfs": "^9.0.2"
