@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Quiz;
 use App\Entity\Theme;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,6 +14,7 @@ class AdminDashBoardController extends AbstractController
      */
     public function index()
     {
+        
         $user = $this->getUser();
         $quizzes = $user->getQuizzes();
         $themes = $user->getThemes();
@@ -30,7 +32,7 @@ class AdminDashBoardController extends AbstractController
     /**
      * @Route("/admin/dashboard/delete/theme/{id}", name="delete_theme")
      */
-    public function deleteQuizz(string $id){
+    public function deleteTheme(string $id){
 
         $entityManager = $this->getDoctrine()->getManager();
 
@@ -43,6 +45,28 @@ class AdminDashBoardController extends AbstractController
         }
 
         $entityManager->remove($theme);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('admin_dash_board');
+
+    }
+
+    /**
+     * @Route("/admin/dashboard/delete/quiz/{id}", name="delete_quiz")
+     */
+    public function deleteQuizz(string $id){
+
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $quiz = $this->getDoctrine()->getRepository(Quiz::class)->find($id);
+
+        if (!$quiz) {
+            throw $this->createNotFoundException(
+                'No Quiz found for id '.$id
+            );
+        }
+
+        $entityManager->remove($quiz);
         $entityManager->flush();
 
         return $this->redirectToRoute('admin_dash_board');

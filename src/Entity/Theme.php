@@ -24,7 +24,7 @@ class Theme
     private $Nom;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Quiz", mappedBy="theme")
+     * @ORM\OneToMany(targetEntity="App\Entity\Quiz", mappedBy="theme", cascade={"remove"})
      */
     private $quizzes;
 

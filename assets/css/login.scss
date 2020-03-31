@@ -1,13 +1,14 @@
 @import "~rfs/scss";
+@import "variables";
 
-.Body{
+/*.Body{
   position: absolute;
   top: 0;
   left: 0;
   overflow: hidden;
   height: 100%;
   width: 100%;
-}
+}*/
 
 .loginPage{
   position: relative;
@@ -24,6 +25,7 @@
   left: 0;
   width: 100%;
   height: 100%;
+  background-color: transparent;
 }
 
 .QuizzDesignerTitle{

@@ -9,7 +9,7 @@
 @import "variables";
 
 body {
-    background: linear-gradient(.25turn,$QDBlue,$QDDarkPurple,$QDPurple,$QDPink,$QDRed);
+    background: linear-gradient(.25turn,$QDBlue,$QDDarkPurple,$QDPurple,$QDPink,$QDRed)!important;
     color: white;
     /*padding-top: $bodyPadding;*/
     padding-left: 2%;

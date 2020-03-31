@@ -6,10 +6,10 @@
     <br>
     <div class="row justify-content-around">
         {% for theme in themes %}
-            <div class="card text-center quizzCard col-3">
+            <div class="card text-center quizzCard col-3 quizzCardContent">
                 <div class="row">
                     <div class="card-title col-8">
-                        <h1>{{ theme.nom }}</h1>
+                        <h2>{{ theme.nom }}</h2>
                     </div>
                     <a href="{{ path('delete_theme', {id : theme.id}) }}" class="deleteButton col-3"><button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></a>
                 </div>

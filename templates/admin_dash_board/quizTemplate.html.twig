@@ -4,11 +4,23 @@
         <a class="col-1.5" href="{{ path('create_quizz_page') }}"><button type="button" class="btn btn-success"><i class="fas fa-plus"></i> Créer Quiz</button></a>
     </div>
     <br>
-    <div class="row justify-content-start">
+    <div class="row">
         {% for quizz in quizzes %}
-            <div class="card text-center quizzCard col-3">
-                <div class="card-title">
-                    <h1>{{ quizz.nom }}</h1>
+            <div class="quizzCard col-12">
+                <div class="container quizzCardContent">
+                    <div class="row align-items-center">
+                        <div class="card-title col-7">
+                            <h1>{{ quizz.nom }}</h1>
+                        </div>
+                        <div class="row col-4 align-items-center">
+                            <h5 class="col-6">Difficulté : {{ quizz.difficulte }}</h5>
+                            <a href="{{ path('delete_quiz', {id : quizz.id}) }}" class="deleteButton col-3"><button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></a>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <h5 class="col-7">Thème : {{ quizz.theme.nom }}</h5>
+                        <h5 class="col-5">Ordonné : {% if quizz.EstOrdonne == 0 %} Non {% else %} Oui {% endif %}</h5>
+                    </div>
                 </div>
             </div>
         {% endfor %}
