@@ -11,69 +11,64 @@ function addQuestion(qcm){
     var numItems = $('.questionCard').length;
     let idQuestion=numItems+1;
     var container = document.getElementById("quizz");
+    var fileInput = createElement("input",{"type":"file","class":"custom-file-input","id":"customFile".concat(idQuestion)});
+    var fileLabel = createElement("label",{"class":"custom-file-label","for":"customFile".concat(idQuestion)},"Ajouter une image");
+    var divFile = createElement("div",{"class":"custom-file col-3"},[fileInput,fileLabel]);
+    var questionInput = createElement("input",{"type":"text" ,"placeholder":"Question" ,"class":"col-11","name":"QuestionText".concat(idQuestion)});
+    var divQuestion = createElement("div",{"class":"col-7"},questionInput);
+    var deleteQuestionButton = createElement("button",{"type":"button","class":"btn btn-danger","id":"btn-del-".concat(idQuestion)},"Supprimer");
+    deleteQuestionButton.addEventListener('click',function () {
+        deleteQuestion(idQuestion);
+    });
+    var colDel = createElement("div",{"class":"col-1"},deleteQuestionButton);
+    var row1 = createElement("div",{"class":"row"},[divQuestion,divFile,colDel]);
     if(!qcm){
-        var deleteQuestionButton=createElement("button",{"type":"button" ,"class":"btn btn-danger","id":"but-del-".concat(idQuestion)},"Supprimer");
-        deleteQuestionButton.addEventListener('click', function(){
-            deleteQuestion(idQuestion);
-        });
-        var divDeleteQuestionButton = createElement("div",{"class":"text-right"},deleteQuestionButton);
-        var difficulteInput=createElement("input",{"id":"difficulte", "type":"number", "placeholder":"Nombre de points","class":"col-6", "min":"1", "max":"50","name":"QuestionDifficulty".concat(idQuestion)}),
-            divCol=createElement("div",{"class":"col-6"},[difficulteInput]),
-            questionInput=createElement("input",{"type":"text" ,"placeholder":"Question" ,"class":"col-6","name":"QuestionText".concat(idQuestion)}),
-            divRowQuestion=createElement("div",{"class":"row mt-2"},[questionInput,divCol]);
-        var divContainer=createElement("div",{"class":"container"},[divDeleteQuestionButton,divRowQuestion]);
-        var divJumbotron=createElement("div",{"class":"jumbotron jumbotron-fluid"},[divContainer]),
-            divQuestion=createElement("div",{"id":"question".concat(idQuestion),"class":"questionCard"},[divJumbotron]);
-        container.appendChild(divQuestion);
-    }
-    else{
-        var questionInput=createElement("input",{"type":"text" ,"placeholder":"Question" ,"class":"col-12","name":"QuestionText".concat(idQuestion)});
-        var col1 = createElement("div",{"class":"col-5"},questionInput);
+        var helpInput=createElement("input",{"type":"text" ,"placeholder":"Indice" ,"class":"col-12","name":"QuestionHelp".concat(idQuestion)});
+        var col1 = createElement("div",{"class":"col-7"},helpInput);
         var questionPointsInput = createElement("input",{"id":"nb-points-Q".concat(idQuestion),"type":"number","class":"col-10","placeholder":"Nombre de points","min":"1", "max":"50" ,"name":"QuestionDifficulty".concat(idQuestion)});
         questionPointsInput.addEventListener('input',function () {
             updatePoints(idQuestion);
         });
         var col2 = createElement("div",{"class":"col-3"},questionPointsInput);
-        var pointsSwitch = createElement("input",{"id":"auto-points-".concat(idQuestion),"type":"checkbox","class":"col-6" ,"checked":"true" ,"data-toggle":"toggle","data-on":"Auto" ,"data-off":"Manuel" ,"data-onstyle":"info", "data-offstyle":"light"})
-        pointsSwitch.addEventListener('click',function() {
-                if($(this).prop('checked')){
-                    updatePoints(idQuestion);
-                    var i=1;
-                    while (findAnswer(idQuestion,i)!=null){
-                        findAnswer(idQuestion,i).getElementsByClassName("answer-points").item(0).disabled=true;
-                        i++;
-                    }
-                    document.getElementById('nb-points-Q'.concat(idQuestion)).disabled=false;
-                }
-                else{
-
-                    updatePoints(idQuestion);
-                    var i=1;
-                    while (findAnswer(idQuestion,i)!=null){
-                        findAnswer(idQuestion,i).getElementsByClassName("answer-points").item(0).disabled=false;
-                        i++;
-                    }
-                    document.getElementById('nb-points-Q'.concat(idQuestion)).disabled=true;
-                }
+        var row2 = createElement("div",{"class":"row mt-2"},[col1,col2]);
+        var answerInput=createElement("input",{"type":"text" ,"placeholder":"Réponse" ,"class":"col-10","name":"QuestionAnswer".concat(idQuestion)});
+        var row3 = createElement("div",{"class":"row mt-4 justify-content-center"},answerInput);
+        var divContainer=createElement("div",{"class":"container"},[row1,row2,row3]);
+        var divJumbotron=createElement("div",{"class":"jumbotron jumbotron-fluid"},[divContainer]),
+            divQuestion=createElement("div",{"id":"question".concat(idQuestion),"class":"questionCard"},[divJumbotron]);
+        container.appendChild(divQuestion);
+    }
+    else{
+        var helpInput=createElement("input",{"type":"text" ,"placeholder":"Indice" ,"class":"col-12","name":"QuestionHelp".concat(idQuestion)});
+        var col1 = createElement("div",{"class":"col-6"},helpInput);
+        var questionPointsInput = createElement("input",{"id":"nb-points-Q".concat(idQuestion),"type":"number","class":"col-10","placeholder":"Nombre de points","min":"1", "max":"50" ,"name":"QuestionDifficulty".concat(idQuestion)});
+        questionPointsInput.addEventListener('input',function () {
+            updatePoints(idQuestion);
         });
-        var col3 = createElement("div",{"class":"col-2"},pointsSwitch);
-        var deleteQuestionButton = createElement("button",{"type":"button","class":"btn btn-danger","id":"btn-del-".concat(idQuestion)},"Supprimer")
-        var col4 = createElement("div",{"class":"col-1"},deleteQuestionButton);
-        var row1 = createElement("div",{"class":"row"},[col1,col2,col3,col4]);
+        var col2 = createElement("div",{"class":"col-3"},questionPointsInput);
+        var divTextSwitch = createElement("div",{"class":"col-2"},"Calcul auto des points");
+        var spanSwitch = createElement("span",{"class":"slider round"});
+        var pointsSwitch = createElement("input",{"id":"auto-points-".concat(idQuestion),"type":"checkbox","class":"default" ,"checked":"true"});
+        pointsSwitch.addEventListener('click',function() {
+            updateFieldsStates(idQuestion);
+        });
+        var labelSwitch = createElement("label",{"class":"switch col-1.5"},[pointsSwitch,spanSwitch]);
+        var row2 = createElement("div",{"class":"row mt-2"},[col1,col2,divTextSwitch,labelSwitch]);
         var answers = renderAnswer(idQuestion,1);
-        var row2 = createElement("div",{"class":"row mt-2","id":"answersQ".concat(idQuestion)},answers);
+        var row3 = createElement("div",{"class":"row mt-2","id":"answersQ".concat(idQuestion)},answers);
         var imgAddButton = createElement("i",{"class":"fas fa-plus"});
         var addQuestionButton = createElement("button",{"type":"button","class":"btn btn-primary col-12","id":"addAnswerQ".concat(idQuestion)},[imgAddButton," Ajouter une réponse"]);
         addQuestionButton.addEventListener('click',function () {
             addAnswer(idQuestion);
         });
         var divQB = createElement("div",{"class":"col-3"},addQuestionButton);
-        var row3 = createElement("div",{"class":"row mt-2 justify-content-center"},divQB);
-        var divContainer=createElement("div",{"class":"container"},[row1,row2,row3]);
+        var row4 = createElement("div",{"class":"row mt-2 justify-content-center"},divQB);
+        var divContainer=createElement("div",{"class":"container"},[row1,row2,row3,row4]);
         var divJumbotron=createElement("div",{"class":"jumbotron jumbotron-fluid"},[divContainer]),
             divQuestion=createElement("div",{"id":"question".concat(idQuestion),"class":"questionCard"},[divJumbotron]);
         container.appendChild(divQuestion);
     }
+
 }
 function deleteQuestion(id) {
     var question = document.getElementById("question".concat(id));
@@ -89,10 +84,16 @@ function deleteAll() {
     }
 }
 function renderAnswer(idQuestion,idAnswer) {
-    var checkbox=createElement("input",{"type":"checkbox","class":"col-2 answer-check","data-toggle":"toggle","data-on":"<i class='fa fa-check-square'></i>","data-off":"<i class='fa fa-times'></i>","value":"Correct","name":"check-Q".concat(idQuestion).concat("-A").concat(idAnswer),"data-onstyle":"success","data-offstyle":"danger"})
+    var spanSwitch = createElement("span",{"class":"slider round"});
+    var checkbox=createElement("input",{"type":"checkbox","class":"success answer-check","value":"Correct","name":"check-Q".concat(idQuestion).concat("-A").concat(idAnswer)});
+    checkbox.addEventListener("click",function () {
+        updatePoints(idQuestion);
+        updateFieldsStates(idQuestion);
+    });
+    var divSwitch = createElement("label",{"class":"switch col-1.5"},[checkbox,spanSwitch]);
     var span1 = createElement("span",{"class":"col-1"});
     var answerInput = createElement("input",{"type":"text","placeholder":"Réponse","class":"form-control col-8 answer-text","name":"txt-Q".concat(idQuestion).concat("-A").concat(idAnswer)});
-    var col1=createElement("div",{"class":"col-7 form-check form-check-inline"},[checkbox,span1,answerInput]);
+    var col1=createElement("div",{"class":"col-7 form-check form-check-inline"},[divSwitch,span1,answerInput]);
     var pointsInput=createElement("input",{"type":"number","disabled":"true","class":"col-4 answer-points","placeholder":"Points","min":"0","max":"50","name":"points-Q".concat(idQuestion).concat("-A").concat(idAnswer)});
     pointsInput.addEventListener('input',function () {
         updatePoints(idQuestion);
@@ -136,12 +137,21 @@ function findAnswer(idQuestion,idAnswer) {
 function updatePoints(idQuestion) {
     if($('#auto-points-'.concat(idQuestion)).prop('checked')){
         var nbAnswers = $("#answersQ".concat(idQuestion).concat(" > .answer")).length;
+        var nbAnswersChecked = 0;
+        for(let iCheck=1;iCheck<=nbAnswers;iCheck++){
+            if(findAnswer(idQuestion,iCheck).getElementsByClassName("answer-check").item(0).checked){
+                nbAnswersChecked++;
+            }
+        }
         var nbPoints = document.getElementById('nb-points-Q'.concat(idQuestion)).value;
-        var questionPoints=nbPoints/nbAnswers;
-        var i=1;
-        while (i<=nbAnswers){
-            findAnswer(idQuestion,i).getElementsByClassName("answer-points").item(0).value=questionPoints;
-            i++;
+        var questionPoints=nbPoints/nbAnswersChecked;
+        for(let iCheck=1;iCheck<=nbAnswers;iCheck++){
+            if(findAnswer(idQuestion,iCheck).getElementsByClassName("answer-check").item(0).checked){
+                findAnswer(idQuestion,iCheck).getElementsByClassName("answer-points").item(0).value=questionPoints;
+            }
+            else{
+                findAnswer(idQuestion,iCheck).getElementsByClassName("answer-points").item(0).value=0;
+            }
         }
     }
     else {
@@ -149,11 +159,37 @@ function updatePoints(idQuestion) {
         var nbAnswers = $("#answersQ".concat(idQuestion).concat(" > .answer")).length;
         var i=1;
         while (i<=nbAnswers){
+            if(!findAnswer(idQuestion,i).getElementsByClassName("answer-check").item(0).checked){
+                findAnswer(idQuestion,i).getElementsByClassName("answer-points").item(0).value=0;
+            }
             nbPoints+=parseInt(findAnswer(idQuestion,i).getElementsByClassName("answer-points").item(0).value);
             i++;
         }
         document.getElementById('nb-points-Q'.concat(idQuestion)).value=nbPoints;
     }
+}
+function updateFieldsStates(idQuestion) {
+    if($("#auto-points-".concat(idQuestion)).prop('checked')){
+        updatePoints(idQuestion);
+        var i=1;
+        while (findAnswer(idQuestion,i)!=null){
+            findAnswer(idQuestion,i).getElementsByClassName("answer-points").item(0).disabled=true;
+            i++;
+        }
+        document.getElementById('nb-points-Q'.concat(idQuestion)).disabled=false;
+    }
+    else{
+        updatePoints(idQuestion);
+        var i=1;
+        while (findAnswer(idQuestion,i)!=null){
+            if(findAnswer(idQuestion,i).getElementsByClassName("answer-check").item(0).checked){
+                findAnswer(idQuestion,i).getElementsByClassName("answer-points").item(0).disabled=false;
+            }
+            i++;
+        }
+        document.getElementById('nb-points-Q'.concat(idQuestion)).disabled=true;
+    }
+
 }
 function createElement(element, attribute, inner) {
     if (typeof(element) === "undefined") {
