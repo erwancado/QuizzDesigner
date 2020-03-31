@@ -17,10 +17,10 @@
                 <button type="button" id="myThemeButton" class="btn list-group-item list-group-item-action"><h1>Themes <span class="badge badge-pill badge-light">{{ themes|length }}</span></h1></button>
             </ul>
             <div class="col-xl-10 col-sm-8" style="padding: 0">
-                <div id="quizTemplate">
+                <div id="quizTemplate" {% if hide != "" and hide == "quizz" %} class="hide" {% endif %}>
                     {{ include(quizTemplate) }}
                 </div>
-                <div id="themeTemplate" class="hide">
+                <div id="themeTemplate" {% if hide != "" and hide == "theme" %} class="hide" {% endif %}>
                     {{ include(themeTemplate) }}
                 </div>
                 {% for message in app.flashes('succes') %}
