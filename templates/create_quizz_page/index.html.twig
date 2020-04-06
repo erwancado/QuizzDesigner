@@ -16,7 +16,6 @@
                     <h1 class="title col-8">Nouveau Quizz</h1>
                 </div>
             </div>
-
             <!-- Modal -->
             <div class="modal fade" id="modalTypeQuestion" tabindex="-1" role="dialog" aria-labelledby="Type de question" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -39,11 +38,17 @@
         </div>
 
         <div class="container">
-            <form method="post" action="" id="quizz">
-                <div class="row justify-content-around">
+            <form method="post" action="{{ path('create_quizz_page') }}" id="quizz">
+                <div class="row justify-content-between">
                     <input class="form-control form-control-lg col-6" type="text" placeholder="Titre du Quizz" name="QuizzTitle">
                     <input class="btn btn-success col-2" type="submit" value="Créer le quizz">
                     <button type="button" class="btn btn-danger col-2" id="delQuizz"><i class="fas fa-ban"></i> Vider le quizz</button>
+                </div>
+                <div class="row mt-4 justify-content-start">
+                    <label>
+                        Affichage des questions :
+                        <input type="checkbox" name="QuizzOrdered" value="true" data-style="ios" checked data-toggle="toggle" data-onstyle="primary" data-offstyle="info" data-on="<i class='fa fa-sort'></i>  Ordonné" data-off="<i class='fa fa-random'></i>  Aléatoire">
+                    </label>
                 </div>
 
                 {#<div id="question1" class="questionCard">

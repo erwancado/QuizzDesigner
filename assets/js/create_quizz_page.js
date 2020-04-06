@@ -11,7 +11,7 @@ function addQuestion(qcm){
     var numItems = $('.questionCard').length;
     let idQuestion=numItems+1;
     var container = document.getElementById("quizz");
-    var fileInput = createElement("input",{"type":"file","class":"custom-file-input","id":"customFile".concat(idQuestion)});
+    var fileInput = createElement("input",{"type":"file","class":"custom-file-input","name":"customFile".concat(idQuestion)});
     var fileLabel = createElement("label",{"class":"custom-file-label","for":"customFile".concat(idQuestion)},"Ajouter une image");
     var divFile = createElement("div",{"class":"custom-file col-3"},[fileInput,fileLabel]);
     var questionInput = createElement("input",{"type":"text" ,"placeholder":"Question" ,"class":"col-11","name":"QuestionText".concat(idQuestion)});
@@ -25,10 +25,7 @@ function addQuestion(qcm){
     if(!qcm){
         var helpInput=createElement("input",{"type":"text" ,"placeholder":"Indice" ,"class":"col-12","name":"QuestionHelp".concat(idQuestion)});
         var col1 = createElement("div",{"class":"col-7"},helpInput);
-        var questionPointsInput = createElement("input",{"id":"nb-points-Q".concat(idQuestion),"type":"number","class":"col-10","placeholder":"Nombre de points","min":"1", "max":"50" ,"name":"QuestionDifficulty".concat(idQuestion)});
-        questionPointsInput.addEventListener('input',function () {
-            updatePoints(idQuestion);
-        });
+        var questionPointsInput = createElement("input",{"id":"nb-points-Q".concat(idQuestion),"type":"number","value":"5","class":"col-10","placeholder":"Nombre de points","min":"1", "max":"50" ,"name":"QuestionDifficulty".concat(idQuestion)});
         var col2 = createElement("div",{"class":"col-3"},questionPointsInput);
         var row2 = createElement("div",{"class":"row mt-2"},[col1,col2]);
         var answerInput=createElement("input",{"type":"text" ,"placeholder":"Réponse" ,"class":"col-10","name":"QuestionAnswer".concat(idQuestion)});
@@ -130,6 +127,7 @@ function removeAnswer(idQuestion,idAnswer) {
         findAnswer(idQuestion,i).id="answer-Q".concat(idQuestion).concat("-A").concat(newID);
         i++;
     }
+    updatePoints(idQuestion);
 }
 function findAnswer(idQuestion,idAnswer) {
     return document.getElementById("answer-Q".concat(idQuestion).concat("-A").concat(idAnswer));
