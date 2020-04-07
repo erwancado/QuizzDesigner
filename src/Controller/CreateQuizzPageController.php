@@ -57,7 +57,7 @@ class CreateQuizzPageController extends AbstractController
                     while (($textReponseQCM=$this->getValue($request,"txt-Q".$iQuestion."-A".$iReponse))!="null"){
                         $reponseQCM=new Reponse();
                         $reponseQCM->setLibelle($textReponseQCM);
-                        $reponseQCM->setNbPoints($this->getValue($request,"points-Q".$iQuestion."-A".$iReponse));
+                        $reponseQCM->setNbPoints((int)$this->getValue($request,"points-Q".$iQuestion."-A".$iReponse));
                         $reponseQCM->setQuestion($question);
                         $entitymanager->persist($reponseQCM);
                         $question->addReponse($reponseQCM);
