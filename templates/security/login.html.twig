@@ -20,7 +20,7 @@
 
                 {% if app.user %}
                     <div class="mb-3">
-                        You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                        Vous êtes connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
                     </div>
                 {% endif %}
 
@@ -31,9 +31,9 @@
                         <br>
                         <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control text-center" required autofocus placeholder="Email">
                         <br>
-                        <input type="password" name="password" id="inputPassword" class="form-control text-center" required placeholder="Password">
+                        <input type="password" name="password" id="inputPassword" class="form-control text-center" required placeholder="Mot de passe">
                         <div class="forgotPassword">
-                            <a href="">forgot your password ?</a>
+                            <a href="">Mot de passe oublié ?</a>
                         </div>
                     </div>
                     <input type="hidden" name="_csrf_token"
@@ -51,10 +51,10 @@
                         </div>
                     #}
                     <div class="register">
-                        <a href="{{ path('app_register') }}">Register now !</a>
+                        <a href="{{ path('app_register') }}">S'inscrire !</a>
                     </div>
                     <button class="btn btn-lg btn-outline-light submitButton" type="submit">
-                        Sign in
+                        Se connecter
                     </button>
                 </div>
 

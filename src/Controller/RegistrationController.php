@@ -56,13 +56,13 @@ class RegistrationController extends AbstractController
                 }
                 else{
                     $this->redirectToRoute("app_register");
-                    echo '<script>alert("Password does not match confirmed password")</script>';
+                    echo '<script>alert("Le mot de passe ne correspond pas")</script>';
                 }
 
             }
             else{
                 $this->redirectToRoute("app_register");
-                echo '<script>alert("Email does not match confirmed email")</script>';
+                echo '<script>alert("L\'Email ne correspond pas")</script>';
             }
 
         }

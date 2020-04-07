@@ -13,29 +13,29 @@
 
             <div class="container registerform">
                 {{ form_start(registrationForm) }}
-                <h1 class="h3 mb-3 font-weight-normal text-center title">Register</h1>
+                <h1 class="h3 mb-3 font-weight-normal text-center title">Inscription</h1>
                 <br>
                 <div class="container loginForm">
                     <div class="row justify-content-around" id="emailDiv">
                         {{ form_widget(registrationForm.email, {'attr' : {'class' : 'input form-control col-5', 'placeholder' : 'Email'}}) }}
-                        {{ form_widget(registrationForm.ConfirmEmail, {'attr' : {'class' : 'input form-control col-5', 'placeholder' : 'Confirm Email'}}) }}
+                        {{ form_widget(registrationForm.ConfirmEmail, {'attr' : {'class' : 'input form-control col-5', 'placeholder' : 'Confirmez Email'}}) }}
                     </div>
                     <div class="divError" id="divErrorEmail"></div>
                     <div class="row justify-content-around" id="passwordDiv">
-                        {{ form_widget(registrationForm.plainPassword, {'attr' : {'class' : 'input form-control col-5', 'placeholder' : 'Password'}}) }}
+                        {{ form_widget(registrationForm.plainPassword, {'attr' : {'class' : 'input form-control col-5', 'placeholder' : 'Mot de passe'}}) }}
 
-                        {{ form_widget(registrationForm.ConfirmPassword, {'attr' : {'class' : 'input form-control col-5', 'placeholder' : 'Confirm your Password'}}) }}
+                        {{ form_widget(registrationForm.ConfirmPassword, {'attr' : {'class' : 'input form-control col-5', 'placeholder' : 'Confirmez le Mot de passe'}}) }}
                     </div>
                     <div class="divError" id="divErrorPassword"></div>
                     <div class="row justify-content-around">
-                        {{ form_widget(registrationForm.prenom, {'attr' : {'class' : 'input form-control col-5', 'placeholder' : 'First Name'}}) }}
+                        {{ form_widget(registrationForm.prenom, {'attr' : {'class' : 'input form-control col-5', 'placeholder' : 'Prénom'}}) }}
 
-                        {{ form_widget(registrationForm.nom, {'attr' : {'class' : 'input form-control col-5', 'placeholder' : 'Last Name'}}) }}
+                        {{ form_widget(registrationForm.nom, {'attr' : {'class' : 'input form-control col-5', 'placeholder' : 'Nom'}}) }}
                     </div>
 
                 </div>
                 <div class="register">
-                    <a href="{{ path('app_login') }}">Already have an account ? Login here</a>
+                    <a href="{{ path('app_login') }}">Vous avez déja un compte ? Se connecter</a>
                 </div>
                 <button class="btn btn-lg btn-outline-light submitButton" type="submit">
                     Ok
