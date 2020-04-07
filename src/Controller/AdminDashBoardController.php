@@ -21,6 +21,7 @@ class AdminDashBoardController extends AbstractController
     {
 
         $user = $this->getUser();
+
         $quizzes = $user->getQuizzes();
         $themes = $user->getThemes();
 
