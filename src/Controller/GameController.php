@@ -23,11 +23,25 @@ class GameController extends AbstractController
             $partie=new Partie();
             $partie->setUser($user);
             $partie->setQuiz($quizz);
+            $questions=$quizz->getQuestions()->toArray();
+            if(!$quizz->getEstOrdonne())
+                $questions=shuffle($questions);
+            $partie->setQuestionInProgress($questions[0]);
         }
-
+        else{
+            $questions=$quizz->getQuestions();
+            foreach ($partie->getQuestionsDone() as $q){
+                $questions->removeElement($q);
+            }
+            $questions=$questions->toArray();
+            if(!$quizz->getEstOrdonne())
+                $questions=shuffle($questions);
+        }
         return $this->render('game/index.html.twig', [
             'controller_name' => 'GameController',
-            'quizz' => $quizz
+            'quizz' => $quizz,
+            'question'=> $partie->getQuestionInProgress(),
+            'partie'=>$partie
         ]);
     }
 }
