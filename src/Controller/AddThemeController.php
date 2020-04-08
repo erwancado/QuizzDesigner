@@ -27,19 +27,18 @@ class AddThemeController extends AbstractController
 
             foreach ($themeList as $t){
                 if ($t->getNom() == $new->getNom()){
-                    $this->addFlash('error', 'Theme "'.$new->getNom().'" already exist !');
+                    $this->addFlash('error', 'Le theme "'.$new->getNom().'" existe déjà !');
                     return $this->redirectToRoute('add_theme');
                 }
-
             }
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($theme);
             $entityManager->flush();
 
-            $this->addFlash('succes', 'Theme '.$new->getNom().' added succesfully !');
+            $this->addFlash('succes', 'Theme "'.$new->getNom().'" ajouté avec succés !');
 
-            return $this->redirectToRoute('admin_dash_board');
+            return $this->redirectToRoute('admin_dash_board', ['hide' => 'quizz']);
         }
 
         return $this->render('add_theme/index.html.twig', [

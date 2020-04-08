@@ -10,13 +10,13 @@
     <div class="example-wrapper">
 
         <div class="head row">
-            <a class="back" href="{{ path('home_page') }}"><i class="fas fa-arrow-circle-left" style="font-size: 50px"></i></a>
+            <a class="back" href="{{ path('admin_dash_board') }}"><i class="fas fa-arrow-circle-left" style="font-size: 50px"></i></a>
             <div class="container">
                 <div class="row">
                     <h1 class="title col-8">Nouveau Quizz</h1>
                 </div>
             </div>
-            <!-- Modal -->
+            {# Modale #}
             <div class="modal fade" id="modalTypeQuestion" tabindex="-1" role="dialog" aria-labelledby="Type de question" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -53,71 +53,30 @@
                         Affichage des questions :
                         <input type="checkbox" name="QuizzOrdered" value="true" data-style="ios" checked data-toggle="toggle" data-onstyle="primary" data-offstyle="info" data-on="<i class='fa fa-sort'></i>  Ordonné" data-off="<i class='fa fa-random'></i>  Aléatoire">
                     </label>
-                </div>
-
-                {#<div id="question1" class="questionCard">
-                    <div class="jumbotron jumbotron-fluid">
-                        <div class="container">
-                            <div class="text-right">
-                                <button type="button" class="btn btn-danger" id="btn-del-1">Supprimer</button>
-                            </div>
-                            <div class="row mt-2">
-                                <input type="text" placeholder="Question" class="col-6" name="QuestionText1">
-                                <div class="col-6">
-                                    <input id="difficulte" type="number" placeholder="Nombre de points" class="col-6" min="0" max="10" name="QuestionDifficulty1">
-                                </div>
-                            </div>
-
-                        </div>
+                    <label class="col-form-label">
+                        Difficulté :
+                        <button type="button" class="btn btn-secondary" style="background-color: transparent; padding: 0; border: 0"
+                                data-toggle="tooltip" data-placement="top" data-html="true" title="<p>Choississez la difficulté de votre questionnaire :</p><p>1 -> Le plus facile</p><p> 10 -> Le plus difficile</p>">
+                            <i class="fas fa-question-circle"></i>
+                        </button>
+                        <input type="number" class="text-center" name="QuizzDifficulty" value="1" min="1" max="10">
+                    </label>
+                    <div class="custom-file col-4">
+                        <input type="file" class="custom-file-input" id="customQuizImage" name="customQuizImage">
+                        <label class="custom-file-label" for="customQuizImage">Ajouter une image à votre quizz</label>
                     </div>
                 </div>
-                <div id="question2" class="questionCard">
-                    <div class="jumbotron jumbotron-fluid">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-5">
-                                    <input type="text" placeholder="Question" class="col-12" name="QuestionText2">
-                                </div>
-                                <div class="col-3">
-                                    <input id="nb-points-Q1" type="number" class="col-10" placeholder="Nombre de points" min="0" max="10" name="QuestionDifficulty1">
-                                </div>
-                                <div class="col-2">
-                                    <input id="auto-points-1" type="checkbox" class="col-6" checked data-toggle="toggle" data-on="Auto" data-off="Manuel" data-onstyle="info" data-offstyle="light">
-                                </div>
-                                <div class="col-1">
-                                    <button type="button" class="btn btn-danger" id="btn-del-1">Supprimer</button>
-                                </div>
-                            </div>
-                            <div class="row mt-2" id="answersQ2">
-                                <div class="col-7 form-check form-check-inline">
-                                    <input type="checkbox" class="col-2" data-toggle="toggle" data-on="<i class='fa fa-check-square'></i>" data-off="<i class='fa fa-times'></i>" value="Correct" name="Q2-A1-check" data-onstyle="success" data-offstyle="danger">
-                                    <span class="col-1"></span>
-                                    <input type="text" placeholder="Réponse" class="form-control col-8" name="Q2-A1-txt">
-                                </div>
-                                <div class="col-4 form-check form-check-inline">
-                                    <input type="number" class="col-4 answer-points" placeholder="Points" min="0" max="10" name="QuestionDifficulty1">
-                                    <span class="col-3"></span>
-                                    <button type="button" class="btn btn-danger col-2" id="delAnswerQ1"><i class="fas fa-ban"></i></button>
-                                </div>
-                            </div>
-                            <div class="row mt-2 justify-content-center">
-                                <div class="col-3">
-                                    <button type="button" class="btn btn-primary col-12" id="addAnswerQ1"><i class="fas fa-plus"></i> Ajouter une réponse</button>
-                                </div>
-                            </div>
-
-                    </div>#}
-
             </form>
             <div class="row mt-3 justify-content-between">
                 <button type="button" class="btn btn-success col-2" id="newQuestion" data-toggle="modal" data-target="#modalTypeQuestion"><i class="fas fa-plus"></i> Ajouter une Question</button>
                 <input class="btn btn-success col-2" type="submit" value="Créer le quizz" form="quizz">
             </div>
-            </div>
         </div>
+    </div>
     </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('create_quizz_page')}}
+    {{ encore_entry_script_tags('create_quizz_page_validation')}}
 {% endblock %}

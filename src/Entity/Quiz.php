@@ -69,7 +69,7 @@ class Quiz
     private $theme;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Question", inversedBy="quizzes")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Question", inversedBy="quizzes", cascade={"remove"})
      */
     private $questions;
 
@@ -212,7 +212,7 @@ class Quiz
         return $this->filename;
     }
 
-    public function setFilename(string $filename): self
+    public function setFilename(?string $filename): self
     {
         $this->filename = $filename;
 
@@ -236,7 +236,7 @@ class Quiz
     {
         $this->imgFile = $imgFile;
         if ($this->imgFile instanceof UploadedFile){
-            $this->updated_at = new \DateTime('nom');
+            $this->updated_at = new \DateTime('now');
         }
         return $this;
     }
