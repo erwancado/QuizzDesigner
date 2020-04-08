@@ -35,6 +35,7 @@ class CreateQuizzPageController extends AbstractController
             $user=$this->getDoctrine()->getRepository(User::class)->findOneBy(array('email'=>$user));
             $quizz->setUser($user);
             $quizz->setUpdatedAt(new \DateTime("now"));
+            $quizz->setDifficulte(1);
             $user->addQuiz($quizz);
             while (($text=$this->getValue($request,"QuestionText".$iQuestion))!="null"){
                 $question=new Question();

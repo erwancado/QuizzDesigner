@@ -10,7 +10,9 @@
                 <div class="container quizzCardContent">
                     <div class="row align-items-center">
                         <div class="card-title col-7">
+                            <a href="{{ path('game',{id : quizz.id}) }}">
                             <h1>{{ quizz.nom }}</h1>
+                            </a>
                         </div>
                         <div class="row col-4 align-items-center">
                             <h5 class="col-6">Difficulté : {{ quizz.difficulte }}</h5>

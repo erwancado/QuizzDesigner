@@ -43,6 +43,11 @@ class Partie
      */
     private $quiz;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Question")
+     */
+    private $question_in_progress;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +109,18 @@ class Partie
     public function setQuiz(?Quiz $quiz): self
     {
         $this->quiz = $quiz;
+
+        return $this;
+    }
+
+    public function getQuestionInProgress(): ?Question
+    {
+        return $this->question_in_progress;
+    }
+
+    public function setQuestionInProgress(?Question $question_in_progress): self
+    {
+        $this->question_in_progress = $question_in_progress;
 
         return $this;
     }
