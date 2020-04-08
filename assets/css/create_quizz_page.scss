@@ -1,5 +1,8 @@
 $bodyPadding : 90px;
 
+.custom-file-label::after{
+  content: "Choisir"!important;
+}
 .questionCard{
   margin-top : 50px;
 }

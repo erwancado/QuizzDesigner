@@ -1,4 +1,21 @@
-var $ = require('jquery');
+import $ from 'jquery';
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+});
+
+/*$('.custom-file-input').change(function(e){
+
+    //get the file name
+    var fileName = e.target.files[0].name;
+    //replace the "Choose a file" label
+    console.log(fileName);
+    $(this).next('.custom-file-label').text(fileName);
+});*/
+
+$(document).on('change', '.custom-file-input', function (event) {
+    $(this).next('.custom-file-label').text(event.target.files[0].name);
+});
 
 document.getElementById("newQO").addEventListener('click',function () {
     addQuestion(false);
@@ -7,6 +24,9 @@ document.getElementById("newQCM").addEventListener('click',function () {
     addQuestion(true);
 });
 document.getElementById("delQuizz").onclick=deleteAll;
+
+
+
 function addQuestion(qcm){
     var numItems = $('.questionCard').length;
     let idQuestion=numItems+1;
@@ -91,7 +111,7 @@ function renderAnswer(idQuestion,idAnswer) {
     var span1 = createElement("span",{"class":"col-1"});
     var answerInput = createElement("input",{"type":"text","placeholder":"Réponse","class":"form-control col-8 answer-text","name":"txt-Q".concat(idQuestion).concat("-A").concat(idAnswer)});
     var col1=createElement("div",{"class":"col-7 form-check form-check-inline"},[divSwitch,span1,answerInput]);
-    var pointsInput=createElement("input",{"type":"number","disabled":"true","class":"col-4 answer-points","placeholder":"Points","min":"0","max":"50","name":"points-Q".concat(idQuestion).concat("-A").concat(idAnswer)});
+    var pointsInput=createElement("input",{"type":"number","readonly":"","class":"col-4 answer-points","placeholder":"Points","min":"0","max":"50","name":"points-Q".concat(idQuestion).concat("-A").concat(idAnswer)});
     pointsInput.addEventListener('input',function () {
         updatePoints(idQuestion);
     });
@@ -171,21 +191,21 @@ function updateFieldsStates(idQuestion) {
         updatePoints(idQuestion);
         var i=1;
         while (findAnswer(idQuestion,i)!=null){
-            findAnswer(idQuestion,i).getElementsByClassName("answer-points").item(0).disabled=true;
+            findAnswer(idQuestion,i).getElementsByClassName("answer-points").item(0).readOnly=true;
             i++;
         }
-        document.getElementById('nb-points-Q'.concat(idQuestion)).disabled=false;
+        document.getElementById('nb-points-Q'.concat(idQuestion)).readOnly=false;
     }
     else{
         updatePoints(idQuestion);
         var i=1;
         while (findAnswer(idQuestion,i)!=null){
             if(findAnswer(idQuestion,i).getElementsByClassName("answer-check").item(0).checked){
-                findAnswer(idQuestion,i).getElementsByClassName("answer-points").item(0).disabled=false;
+                findAnswer(idQuestion,i).getElementsByClassName("answer-points").item(0).readOnly=false;
             }
             i++;
         }
-        document.getElementById('nb-points-Q'.concat(idQuestion)).disabled=true;
+        document.getElementById('nb-points-Q'.concat(idQuestion)).readOnly=true;
     }
 
 }

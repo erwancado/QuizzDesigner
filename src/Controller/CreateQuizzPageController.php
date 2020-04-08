@@ -35,14 +35,27 @@ class CreateQuizzPageController extends AbstractController
             $user=$this->getDoctrine()->getRepository(User::class)->findOneBy(array('email'=>$user));
             $quizz->setUser($user);
             $quizz->setUpdatedAt(new \DateTime("now"));
-            $quizz->setDifficulte(1);
+            $quizz->setDifficulte((int)$this->getValue($request, "QuizzDifficulty"));
+
+            if ($this->getValue($request, "customQuizImage") != "null"){
+                $quizz->setFilename($this->getValue($request, "customQuizImage"));
+            }
+            else{
+                $quizz->setFilename("NULL");
+            }
+
             $user->addQuiz($quizz);
             while (($text=$this->getValue($request,"QuestionText".$iQuestion))!="null"){
                 $question=new Question();
                 $question->setLibelle($text);
                 $question->setAide($this->getValue($request,"QuestionHelp".$iQuestion));
                 $question->setNbPoints((int)$this->getValue($request,"QuestionDifficulty".$iQuestion));
-                $isQCM=$this->getValue($request,"check-Q".$iQuestion."-A1")!="null";
+
+                if ($this->getValue($request, "customFile".$iQuestion) != "null"){
+                    $question->setFilename($this->getValue($request, "customFile".$iQuestion));
+                }
+
+                $isQCM=$this->getValue($request,"txt-Q".$iQuestion."-A1")!="null";
                 if(!$isQCM){
                     $question->setType("Ouverte");
                     $reponseNonQCM=new Reponse();
@@ -71,6 +84,8 @@ class CreateQuizzPageController extends AbstractController
             }
             $entitymanager->persist($quizz);
             $entitymanager->flush();
+            $this->addFlash('succes', 'Quizz "'.$quizz->getNom().'" ajouté avec succés !');
+            return $this->redirectToRoute('admin_dash_board', ['hide' => 'theme']);
         }
         return $this->render('create_quizz_page/index.html.twig', [
             'controller_name' => 'CreateQuizzPageController',
