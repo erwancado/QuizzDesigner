@@ -6,13 +6,83 @@
 
 {% block body %}
     <style>
-        .example-wrapper { margin: 1em auto; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper { margin: 1em auto; width: 95%; }
         .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
     </style>
     <div class="example-wrapper">
         <h1 class="title text-center">Bienvenue dans Quizz Designer</h1>
+        {# Carousel 3D #}
+
+        <div class='caroussel_diapo'>
+            <input checked id="carou_un" name="rotation" type="radio">
+            <label for="carou_un"></label>
+
+            <input id="carou_deux" name="rotation" type="radio">
+            <label for="carou_deux"></label>
+
+            <input id="carou_trois" name="rotation" type="radio">
+            <label for="carou_trois"></label>
+
+            <input id="carou_quatre" name="rotation" type="radio">
+            <label for="carou_quatre"></label>
+
+            <input id="carou_cinq" name="rotation" type="radio">
+            <label for="carou_cinq"></label>
+
+            <input id="carou_six" name="rotation" type="radio">
+            <label for="carou_six"></label>
+
+            <input id="carou_sept" name="rotation" type="radio">
+            <label for="carou_sept"></label>
+
+            <input id="carou_huit" name="rotation" type="radio">
+            <label for="carou_huit"></label>
+
+
+            <div class="contenu_carou">
+                <div class="caroussel">
+                    <img src="{{asset('build/images/Affiche-nouvelle-endgame.png')}}" alt>
+                    <img src="{{asset('build/images/Affiche-nouvelle-endgame.png')}}" alt>
+                    <img src="{{asset('build/images/Affiche-nouvelle-endgame.png')}}" alt>
+                    <img src="{{asset('build/images/Affiche-nouvelle-endgame.png')}}" alt>
+                    <img src="{{asset('build/images/Affiche-nouvelle-endgame.png')}}" alt>
+                    <img src="{{asset('build/images/Affiche-nouvelle-endgame.png')}}" alt>
+                    <img src="{{asset('build/images/Affiche-nouvelle-endgame.png')}}" alt>
+                    <img src="{{asset('build/images/Affiche-nouvelle-endgame.png')}}" alt>
+                </div>
+            </div>
+        </div>
+
         <div class="container quizzList">
             <div class="row">
+                {#<div class='caroussel_diapo'>
+                    <input checked id="carou_un" name="rotation" type="radio">
+                    <label for="carou_un"></label>
+                    <input id="carou_deux" name="rotation" type="radio">
+                    <label for="carou_deux"></label>
+                    <input id="carou_trois" name="rotation" type="radio">
+                    <label for="carou_trois"></label>
+                    <input id="carou_quatre" name="rotation" type="radio">
+                    <label for="carou_quatre"></label>
+                    <input id="carou_cinq" name="rotation" type="radio">
+                    <label for="carou_cinq"></label>
+                    <input id="carou_six" name="rotation" type="radio">
+                    <label for="carou_six"></label>
+                    <input id="carou_sept" name="rotation" type="radio">
+                    <label for="carou_sept"></label>
+                    <input id="carou_huit" name="rotation" type="radio">
+                    <label for="carou_huit"></label>
+                    <div class="contenu_carou">
+                        <div class="caroussel">
+                            <img src="{{asset('assets/images/Affiche-nouvelle-endgame.png')}}" title="my image" alt="My image">
+                            <img src="{{asset('assets/images/Affiche-nouvelle-endgame.png')}}" title="my image" alt="My image">
+                            <img src="{{asset('assets/images/Affiche-nouvelle-endgame.png')}}" title="my image" alt="My image">
+                            <img src="{{asset('assets/images/Affiche-nouvelle-endgame.png')}}" title="my image" alt="My image">
+                            <img src="{{asset('assets/images/Affiche-nouvelle-endgame.png')}}" title="my image" alt="My image">
+                        </div>
+                    </div>
+                </div>#}
+
                 {% for quizz in quizzList %}
                     <div class="col-md-4">
                         <div class="card quizzCard">
