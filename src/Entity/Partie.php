@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -47,6 +49,16 @@ class Partie
      * @ORM\ManyToOne(targetEntity="App\Entity\Question")
      */
     private $question_in_progress;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Question")
+     */
+    private $questions_done;
+
+    public function __construct()
+    {
+        $this->questions_done = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -121,6 +133,32 @@ class Partie
     public function setQuestionInProgress(?Question $question_in_progress): self
     {
         $this->question_in_progress = $question_in_progress;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Question[]
+     */
+    public function getQuestionsDone(): Collection
+    {
+        return $this->questions_done;
+    }
+
+    public function addQuestionsDone(Question $questionsDone): self
+    {
+        if (!$this->questions_done->contains($questionsDone)) {
+            $this->questions_done[] = $questionsDone;
+        }
+
+        return $this;
+    }
+
+    public function removeQuestionsDone(Question $questionsDone): self
+    {
+        if ($this->questions_done->contains($questionsDone)) {
+            $this->questions_done->removeElement($questionsDone);
+        }
 
         return $this;
     }
