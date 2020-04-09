@@ -55,33 +55,6 @@
 
         <div class="container quizzList">
             <div class="row">
-                {#<div class='caroussel_diapo'>
-                    <input checked id="carou_un" name="rotation" type="radio">
-                    <label for="carou_un"></label>
-                    <input id="carou_deux" name="rotation" type="radio">
-                    <label for="carou_deux"></label>
-                    <input id="carou_trois" name="rotation" type="radio">
-                    <label for="carou_trois"></label>
-                    <input id="carou_quatre" name="rotation" type="radio">
-                    <label for="carou_quatre"></label>
-                    <input id="carou_cinq" name="rotation" type="radio">
-                    <label for="carou_cinq"></label>
-                    <input id="carou_six" name="rotation" type="radio">
-                    <label for="carou_six"></label>
-                    <input id="carou_sept" name="rotation" type="radio">
-                    <label for="carou_sept"></label>
-                    <input id="carou_huit" name="rotation" type="radio">
-                    <label for="carou_huit"></label>
-                    <div class="contenu_carou">
-                        <div class="caroussel">
-                            <img src="{{asset('assets/images/Affiche-nouvelle-endgame.png')}}" title="my image" alt="My image">
-                            <img src="{{asset('assets/images/Affiche-nouvelle-endgame.png')}}" title="my image" alt="My image">
-                            <img src="{{asset('assets/images/Affiche-nouvelle-endgame.png')}}" title="my image" alt="My image">
-                            <img src="{{asset('assets/images/Affiche-nouvelle-endgame.png')}}" title="my image" alt="My image">
-                            <img src="{{asset('assets/images/Affiche-nouvelle-endgame.png')}}" title="my image" alt="My image">
-                        </div>
-                    </div>
-                </div>#}
 
                 {% for quizz in quizzList %}
                     <div class="col-md-4">
@@ -95,9 +68,21 @@
 
                             </div>
                         </div>
+                        {#<div class="card">
+                            <img class="card-img-top" src="{{quizz.filename}}" alt="Card image">
+                            <div class="card-img-overlay">
+                                <h4 class="card-title">{{quizz.nom}}</h4>
+                                <p class="card-text">Some example text.</p>
+                                <a href="#" class="btn btn-primary">See Profile</a>
+                            </div>
+                        </div>#}
                     </div>
                 {% endfor %}
             </div>
         </div>
     </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('home_page')}}
 {% endblock %}

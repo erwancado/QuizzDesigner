@@ -38,7 +38,7 @@
         </div>
 
         <div class="container">
-            <form method="post" action="{{ path('create_quizz_page') }}" id="quizz">
+            <form method="post" action="{{ path('create_quizz_page') }}" id="quizz" enctype="multipart/form-data">
                 <div class="row justify-content-between align-items-center">
                     <input class="form-control form-control-lg col-6" type="text" placeholder="Titre du Quizz" name="QuizzTitle">
                     <select class="custom-select col-3" name="theme_list">

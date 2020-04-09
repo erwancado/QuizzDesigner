@@ -14,7 +14,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\Entity(repositoryClass="App\Repository\QuizRepository")
  * @Vich\Uploadable()
  */
-class Quiz
+class Quiz implements \Serializable
 {
     /**
      * @ORM\Id()
@@ -228,7 +228,7 @@ class Quiz
     }
 
     /**
-     * @param File|null $imgFile
+     * @param File|UploadedFile|null $imgFile
      * @return Quiz
      * @throws \Exception
      */
@@ -251,6 +251,17 @@ class Quiz
         $this->updated_at = $updated_at;
 
         return $this;
+    }
+
+    public function serialize()
+    {
+        return serialize($this->id);
+    }
+
+    public function unserialize($serialized)
+    {
+        $this->id = unserialize($serialized);
+
     }
 
 

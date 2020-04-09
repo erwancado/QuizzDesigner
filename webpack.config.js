@@ -14,6 +14,10 @@ Encore
     // only needed for CDN's or sub-directory deploy
     //.setManifestKeyPrefix('build/')
 
+    .copyFiles({
+        from: './assets/images',
+        to: 'images/[path][name].[ext]',
+    })
     /*
      * ENTRY CONFIG
      *
@@ -28,6 +32,7 @@ Encore
     .addEntry('word_animation', './assets/js/word_animation.js')
     .addEntry('register_validation', './assets/js/register_validation.js')
     .addEntry('dash_board', './assets/js/dash_board.js')
+    .addEntry('home_page', './assets/js/home_page.js')
     .addEntry('create_quizz_page_validation', './assets/js/create_quizz_page_validation.js')
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
