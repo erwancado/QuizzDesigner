@@ -9,15 +9,19 @@
     </style>
 
     <div class="example-wrapper">
+        <div class="container" style="margin-bottom: 10%">
+            <h1>Ajout d'un thème</h1>
+            <h4>Choississez une image par défaut pour votre thème puis donnez lui un nom</h4>
+        </div>
         <div class="container align-middle">
             {{ form_start(addThemeForm) }}
             <div class="row justify-content-around">
+                {{ form_widget(addThemeForm.imgFile) }}
                 {{ form_widget(addThemeForm.Nom, {'attr' : {'class' : 'input form-control col-6', 'placeholder' : 'Nom de votre theme'}}) }}
-                <button class="btn btn-lg btn-outline-light submitButton col-2" type="submit">
-                    Ok
-                </button>
             </div>
-
+            <button class="btn btn-lg btn-outline-light submitButton col-2" type="submit">
+                Ok
+            </button>
             {{ form_end(addThemeForm) }}
         </div>
         <div class="container">

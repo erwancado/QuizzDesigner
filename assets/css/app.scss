@@ -47,5 +47,12 @@ input{
     vertical-align: middle!important;
 }
 
+.card-img-top{
+    max-height: inherit;
+    min-height: inherit;
+    opacity: 0.8!important;
+    filter: contrast(0.7);
+}
+
 
 

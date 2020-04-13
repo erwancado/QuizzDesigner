@@ -1,8 +1,42 @@
-$shadowColor : #343A40;
-$shadowColorHover : #67737e;
+@import "variables";
+
+.carouselCard{
+  min-height: 300px;
+  max-height: 300px;
+  min-width: 500px;
+  max-width: 500px;
+}
+
+.carouselCard img{
+  min-height: inherit;
+  max-height: inherit;
+  min-width: inherit;
+  max-width: inherit;
+}
 
 .quizzList {
-  margin-top: 5%;
+  margin: 5% auto;
+  width: 100%;
+  align-content: center;
+}
+
+.quizzImgCard{
+  margin-bottom: 10%;
+}
+
+.quizzLink{
+  max-height: 200px;
+  box-shadow: 0 12px 6px -6px $shadowColor;
+}
+
+.quizzLink:hover .card-img-top{
+  opacity: 0.7!important;
+}
+
+.quizz-card-content{
+  color: white;
+  position: relative;
+  top: 10%;
 }
 
 .card-header{
@@ -45,7 +79,7 @@ img{max-width:100%}
   transition: 1s transform;
 }
 
-.caroussel img {
+.caroussel .card {
   position: absolute;
   top: 0;
   left: 0;
@@ -57,49 +91,49 @@ img{max-width:100%}
 }
 
 
-.caroussel img:nth-child(1){
+.caroussel .card:nth-child(1){
 
   transform:translate3d(0,0,540px) scale(.8)
 
 }
 
-.caroussel img:nth-child(2){
+.caroussel .card:nth-child(2){
 
   transform:rotateY(45deg) translateZ(540px) scale(.8)
 
 }
 
-.caroussel img:nth-child(3){
+.caroussel .card:nth-child(3){
 
   transform:rotateY(90deg) translateZ(540px) scale(.8)
 
 }
 
-.caroussel img:nth-child(4){
+.caroussel .card:nth-child(4){
 
   transform:rotateY(135deg) translateZ(540px) scale(.8)
 
 }
 
-.caroussel img:nth-child(5){
+.caroussel .card:nth-child(5){
 
   transform:rotateY(180deg) translateZ(540px) scale(.8)
 
 }
 
-.caroussel img:nth-child(6){
+.caroussel .card:nth-child(6){
 
   transform:rotateY(225deg) translateZ(540px) scale(.8)
 
 }
 
-.caroussel img:nth-child(7){
+.caroussel .card:nth-child(7){
 
   transform:rotateY(270deg) translateZ(540px) scale(.8)
 
 }
 
-.caroussel img:nth-child(8){
+.caroussel .card:nth-child(8){
 
   transform:rotateY(315deg) translateZ(540px) scale(.8)
 
@@ -174,48 +208,48 @@ img{max-width:100%}
 
 
 /*droite*/
-.caroussel_diapo #carou_un:checked ~ .contenu_carou .caroussel img:nth-child(1){
+.caroussel_diapo #carou_un:checked ~ .contenu_carou .caroussel .card:nth-child(1){
 
   transform:translateZ(540px) scale(1)
 
 }
 
-.caroussel_diapo #carou_deux:checked ~ .contenu_carou .caroussel img:nth-child(2){
+.caroussel_diapo #carou_deux:checked ~ .contenu_carou .caroussel .card:nth-child(2){
 
   transform:rotateY(45deg) translateZ(540px) scale(1)
 
 }
-.caroussel_diapo #carou_trois:checked ~ .contenu_carou .caroussel img:nth-child(3){
+.caroussel_diapo #carou_trois:checked ~ .contenu_carou .caroussel .card:nth-child(3){
 
   transform:rotateY(90deg) translateZ(540px) scale(1)
 
 }
 
-.caroussel_diapo #carou_quatre:checked ~ .contenu_carou .caroussel img:nth-child(4){
+.caroussel_diapo #carou_quatre:checked ~ .contenu_carou .caroussel .card:nth-child(4){
 
   transform:rotateY(135deg) translateZ(540px) scale(1)
 
 }
 
-.caroussel_diapo #carou_cinq:checked ~ .contenu_carou .caroussel img:nth-child(5){
+.caroussel_diapo #carou_cinq:checked ~ .contenu_carou .caroussel .card:nth-child(5){
 
   transform:rotateY(180deg) translateZ(540px) scale(1)
 
 }
 
-.caroussel_diapo #carou_six:checked ~ .contenu_carou .caroussel img:nth-child(6){
+.caroussel_diapo #carou_six:checked ~ .contenu_carou .caroussel .card:nth-child(6){
 
   transform:rotateY(225deg) translateZ(540px) scale(1)
 
 }
 
-.caroussel_diapo #carou_sept:checked ~ .contenu_carou .caroussel img:nth-child(7){
+.caroussel_diapo #carou_sept:checked ~ .contenu_carou .caroussel .card:nth-child(7){
 
   transform:rotateY(270deg) translateZ(540px) scale(1)
 
 }
 
-.caroussel_diapo #carou_huit:checked ~ .contenu_carou .caroussel img:nth-child(8){
+.caroussel_diapo #carou_huit:checked ~ .contenu_carou .caroussel .card:nth-child(8){
 
   transform:rotateY(315deg) translateZ(540px) scale(1)
 

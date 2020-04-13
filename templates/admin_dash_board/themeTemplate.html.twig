@@ -7,13 +7,31 @@
     <div class="row justify-content-around">
         {% for theme in themes %}
             <div class="card quizzCard col-3 quizzCardContent align-self-start">
+                <img class="card-img-top imgCard" src="{{ vich_uploader_asset(theme, 'imgFile') }}" alt="">
+                <div class="row card-img-overlay">
+                    <div class="card-title col-12">
+                        <h2>{{ theme.nom }}</h2>
+                    </div>
+                </div>
+                <div class="dropup show deleteButton">
+                    <a class="btn" style="color: white" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="{{ path('modify_theme', {id : theme.id}) }}"><i class="fas fa-edit"></i> Modifier</a>
+                        <a class="dropdown-item" style="color: red" href="{{ path('delete_theme', {id : theme.id}) }}"><i class="fas fa-trash"></i> Supprimer</a>
+                    </div>
+                </div>
+            </div>
+            {#<div class="card quizzCard col-3 quizzCardContent align-self-start">
                 <div class="row">
                     <div class="card-title col-12">
                         <h2>{{ theme.nom }}</h2>
                     </div>
                 </div>
                 <a href="{{ path('delete_theme', {id : theme.id}) }}" class="deleteButton"><button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></a>
-            </div>
+            </div>#}
         {% endfor %}
     </div>
 </div>

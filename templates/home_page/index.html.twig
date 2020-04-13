@@ -6,10 +6,10 @@
 
 {% block body %}
     <style>
-        .example-wrapper { margin: 1em auto; width: 95%; }
+        .example-wrapper { margin: 1em auto; width: 100%; }
         .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
     </style>
-    <div class="example-wrapper">
+    <div class="example-wrapper justify-content-center">
         <h1 class="title text-center">Bienvenue dans Quizz Designer</h1>
         {# Carousel 3D #}
 
@@ -38,44 +38,43 @@
             <input id="carou_huit" name="rotation" type="radio">
             <label for="carou_huit"></label>
 
-
             <div class="contenu_carou">
                 <div class="caroussel">
-                    <img src="{{asset('build/images/Affiche-nouvelle-endgame.png')}}" alt>
-                    <img src="{{asset('build/images/Affiche-nouvelle-endgame.png')}}" alt>
-                    <img src="{{asset('build/images/Affiche-nouvelle-endgame.png')}}" alt>
-                    <img src="{{asset('build/images/Affiche-nouvelle-endgame.png')}}" alt>
-                    <img src="{{asset('build/images/Affiche-nouvelle-endgame.png')}}" alt>
-                    <img src="{{asset('build/images/Affiche-nouvelle-endgame.png')}}" alt>
-                    <img src="{{asset('build/images/Affiche-nouvelle-endgame.png')}}" alt>
-                    <img src="{{asset('build/images/Affiche-nouvelle-endgame.png')}}" alt>
+                    {% for theme in themeList %}
+                        <div class="card text-center carouselCard">
+                            <img class="" src="{{vich_uploader_asset(theme, 'imgFile')}}">
+                            <div class="card-img-overlay">
+                                <h1>{{ theme.nom }}</h1>
+                            </div>
+                        </div>
+
+                    {% endfor %}
                 </div>
             </div>
         </div>
 
         <div class="container quizzList">
-            <div class="row">
+            <div class="row justify-content-between">
 
                 {% for quizz in quizzList %}
-                    <div class="col-md-4">
-                        <div class="card quizzCard">
-                            <div class="card-header">
-                                <h4 class="card-title text-center">{{ quizz.nom}}</h4>
+                    <div class="col-4 quizzImgCard">
+                        <a href="{{ path('admin_dash_board') }}">
+                            <div class="card text-center quizzLink">
+                                {% if quizz.filename %}
+                                    <img class="card-img-top" src="{{ vich_uploader_asset(quizz, 'imgFile') }}" alt="Card image">
+                                {% else %}
+                                    <img class="card-img-top" src="{{ vich_uploader_asset(quizz.theme, 'imgFile') }}" alt="Card image">
+                                {% endif %}
+                                <div class="card-img-overlay">
+                                    <h2 class="card-title">{{ quizz.nom }}</h2>
+                                    <div class="quizz-card-content">
+                                        <h4> {{ quizz.theme.nom }}</h4>
+                                        <h4> Difficulté : {{ quizz.difficulte }}</h4>
+                                        <h4> Nombre de questions : {{ quizz.questions | length }}</h4>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-body">
-                                {#<p class="card-text">Questions : {{quizz.nbquestion}}</p>#}
-                                <p class="card-text">Difficulté : {{quizz.difficulte}}</p>
-
-                            </div>
-                        </div>
-                        {#<div class="card">
-                            <img class="card-img-top" src="{{quizz.filename}}" alt="Card image">
-                            <div class="card-img-overlay">
-                                <h4 class="card-title">{{quizz.nom}}</h4>
-                                <p class="card-text">Some example text.</p>
-                                <a href="#" class="btn btn-primary">See Profile</a>
-                            </div>
-                        </div>#}
+                        </a>
                     </div>
                 {% endfor %}
             </div>

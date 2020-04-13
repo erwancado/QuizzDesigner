@@ -11,13 +11,14 @@ use phpDocumentor\Reflection\Types\Array_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 class CreateQuizzPageController extends AbstractController
 {
     /**
      * @Route("/create/quizz/page", name="create_quizz_page")
      */
-    public function index()
+    public function index(UploaderHelper $helper)
     {
         $themeList = $this->getDoctrine()->getRepository(Theme::class)->findAll();
         $entitymanager=$this->getDoctrine()->getManager();
@@ -37,7 +38,7 @@ class CreateQuizzPageController extends AbstractController
             $quizz->setUpdatedAt(new \DateTime("now"));
             $quizz->setDifficulte((int)$this->getValue($request, "QuizzDifficulty"));
 
-            if ($request->files->get("customQuizImage", "null") != "null"){
+            if ($request->files->get("customQuizImage") !== null){
                 $quizz->setImgFile($request->files->get('customQuizImage'));
             }
 
