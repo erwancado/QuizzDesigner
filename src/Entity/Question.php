@@ -12,8 +12,9 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\QuestionRepository")
  * @Vich\Uploadable()
+ *
  */
-class Question
+class Question implements \Serializable
 {
     /**
      * @ORM\Id()
@@ -216,6 +217,17 @@ class Question
     {
         $this->filename = $filename;
         return $this;
+    }
+
+    public function serialize()
+    {
+        return serialize($this->id);
+    }
+
+    public function unserialize($serialized)
+    {
+        $this->id = unserialize($serialized);
+
     }
 
 

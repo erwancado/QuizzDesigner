@@ -37,11 +37,8 @@ class CreateQuizzPageController extends AbstractController
             $quizz->setUpdatedAt(new \DateTime("now"));
             $quizz->setDifficulte((int)$this->getValue($request, "QuizzDifficulty"));
 
-            if ($this->getValue($request, "customQuizImage") != "null"){
-                $quizz->setFilename($this->getValue($request, "customQuizImage"));
-            }
-            else{
-                $quizz->setFilename("NULL");
+            if ($request->files->get("customQuizImage", "null") != "null"){
+                $quizz->setImgFile($request->files->get('customQuizImage'));
             }
 
             $user->addQuiz($quizz);
@@ -51,8 +48,8 @@ class CreateQuizzPageController extends AbstractController
                 $question->setAide($this->getValue($request,"QuestionHelp".$iQuestion));
                 $question->setNbPoints((int)$this->getValue($request,"QuestionDifficulty".$iQuestion));
 
-                if ($this->getValue($request, "customFile".$iQuestion) != "null"){
-                    $question->setFilename($this->getValue($request, "customFile".$iQuestion));
+                if ($request->files->get("customFile".$iQuestion, "null") != "null"){
+                    $question->setImageFile($request->files->get("customFile".$iQuestion));
                 }
 
                 $isQCM=$this->getValue($request,"txt-Q".$iQuestion."-A1")!="null";
