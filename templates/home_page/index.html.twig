@@ -58,7 +58,7 @@
 
                 {% for quizz in quizzList %}
                     <div class="col-4 quizzImgCard">
-                        <a href="{{ path('admin_dash_board') }}">
+                        <a href="{{ path('game',{id : quizz.id}) }}">
                             <div class="card text-center quizzLink">
                                 {% if quizz.filename %}
                                     <img class="card-img-top" src="{{ vich_uploader_asset(quizz, 'imgFile') }}" alt="Card image">
