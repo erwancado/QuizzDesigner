@@ -26,7 +26,11 @@
                 <h5 class="card-title text-primary"> Thème : {{ quizz.theme.nom }}</h5>
                 <h5 class="card-title text-primary"> Difficulté du Quizz : {{ quizz.difficulte }}</h5>
             </div>
-            <div class="row justify-content-around">
+            {% if (partie.score / nb_points_quizz) > 0.5 %}
+            <div class="row justify-content-around alert alert-success" role="alert">
+            {% else %}
+            <div class="row justify-content-around alert alert-danger" role="alert">
+            {% endif %}
                 <p class="card-text text-xl-center"> Score final : {{ partie.score }} / {{ nb_points_quizz }}</p>
             </div>
             <p class="card-text"><small class="text-muted">Dernière modification du quizz le {{ quizz.updatedAt.format('d/m/Y') }}.</small></p>

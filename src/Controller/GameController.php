@@ -34,6 +34,8 @@ class GameController extends AbstractController
         $partie=$this->getDoctrine()->getRepository(Partie::class)->findOneBy(array('quiz'=>$quizz,'user'=>$user,'Etat'=>0));
         $questions=$quizz->getQuestions();
         $nb_points_quizz=0;
+        $nb_bonnes_reponses=0;
+        $points=array();
         foreach ($questions as $q){
             $nb_points_quizz+=$q->getNbPoints();
         }
@@ -64,6 +66,9 @@ class GameController extends AbstractController
             $form=$this->createFormBuilder();
             for ($i=0;$i<$question->getReponses()->count();$i++){
                 $reponse=$question->getReponses()->toArray()[$i];
+                array_push($points,$reponse->getNbPoints());
+                if($reponse->getNbPoints()!=0)
+                    $nb_bonnes_reponses++;
                 $form->add('QCMreponse'.$i, CheckboxType::class, [
                     'label'    => $reponse->getLibelle(),
                     'required' => false,
@@ -76,7 +81,10 @@ class GameController extends AbstractController
             $form->add('reponse',TextType::class,['help'=>$question->getAide()]);
         }
 
-        $form->add('valider', SubmitType::class);
+        $form->add('suivant', SubmitType::class,[
+            'disabled'=>true,
+            'attr'=>['class'=>'validation']
+        ]);
         $form = $form->getForm();
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -129,6 +137,8 @@ class GameController extends AbstractController
             'partie'=>$partie,
             'nb_points_quizz'=>$nb_points_quizz,
             'nb_questions_restantes'=>$nb_questions_restantes,
+            'nb_reponses'=>$nb_bonnes_reponses,
+            'points'=>$points,
             'form'=>$form->createView()
         ]);
     }

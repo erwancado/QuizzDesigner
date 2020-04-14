@@ -1,7 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block title %} {{ quizz.nom }} {% endblock %}
-{% block header %} {{ parent() }} {% endblock %}
+{% block header %}
+    {{ parent() }}
+{% endblock %}
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 {% block body %}
 <style>
@@ -35,19 +37,19 @@
         </div>
     </div>
     <!-- Card -->
-    <div class="card bg-white">
+    <div class="card bg-white question-div" data-is-qcm="{{ question.type=="QCM" ? 'true':'false' }}" data-infos-qcm="{{ points | json_encode }}">
 
         <!-- Card image -->
         <div class="view overlay">
             {% if question.filename %}
-            <img class="card-img-top" src="{{ vich_uploader_asset(question,'imgFile') }}"
+            <img class="card-img-top" src="{{ vich_uploader_asset(question,'imageFile') }}"
                  alt="{{question.libelle}}">
             {% endif %}
             <div class="mask rgba-white-slight"></div>
         </div>
 
         <!-- Card content -->
-        <div class="card-body text-secondary">
+        <div class="card-body text-secondary answers-div">
 
             <!-- Title -->
             <h4 class="card-title text-dark">{{ question.libelle }}</h4>
@@ -56,10 +58,16 @@
                 <p class="card-text">{{ question.aide }}</p>
             {% endif %}
             {{ form(form) }}
+            {% if question.type == "QCM" %}
+            <div class="row justify-content-end">
+                <button class="btn btn-success" id="validation"><i class="fa fa-check"></i> Valider ma réponse</button>
+            </div>
+            {% endif %}
         </div>
     </div>
     <!-- Card -->
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
+    {{ encore_entry_script_tags('game')}}
 {% endblock %}
