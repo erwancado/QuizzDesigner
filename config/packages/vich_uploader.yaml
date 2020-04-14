@@ -5,10 +5,12 @@ vich_uploader:
         quizzes:
             uri_prefix: /images/quizzes
             upload_destination: '%kernel.project_dir%/public/images/quizzes'
-            namer: Vich\UploaderBundle\Naming\UniqidNamer
             inject_on_load: true
         questions :
             uri_prefix : /images/questions
             upload_destination: '%kernel.project_dir%/public/images/questions'
-            namer: Vich\UploaderBundle\Naming\UniqidNamer
+            inject_on_load: true
+        themes :
+            uri_prefix: /images/themes
+            upload_destination: '%kernel.project_dir%/public/images/themes'
             inject_on_load: true

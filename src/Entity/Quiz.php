@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints\DateTime;
@@ -230,7 +231,7 @@ class Quiz implements \Serializable
     /**
      * @param File|UploadedFile|null $imgFile
      * @return Quiz
-     * @throws \Exception
+     * @throws Exception
      */
     public function setImgFile(?File $imgFile): Quiz
     {

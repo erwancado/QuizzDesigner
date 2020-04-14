@@ -9,15 +9,13 @@
             <div class="quizzCard col-12">
                 <div class="container quizzCardContent">
                     <div class="row align-items-center">
-                        <div class="card-title col-7">
+                        <div class="card-title col-5">
                             <a href="{{ path('game',{id : quizz.id}) }}">
-                            <h1>{{ quizz.nom }}</h1>
+                                <h1 style="color: white">{{ quizz.nom }}</h1>
                             </a>
                         </div>
-                        <div class="row col-4 align-items-center">
-                            <h5 class="col-6">Difficulté : {{ quizz.difficulte }}</h5>
-                            <a href="{{ path('delete_quiz', {id : quizz.id}) }}" class="deleteButton col-3"><button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></a>
-                        </div>
+                        <h5 class="col-4">Difficulté : {{ quizz.difficulte }}</h5>
+                        <a href="{{ path('delete_quiz', {id : quizz.id}) }}" class="deleteButton col-1"><button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></a>
                     </div>
                     <div class="row align-items-center">
                         <h5 class="col-7">Thème : {{ quizz.theme.nom }}</h5>
