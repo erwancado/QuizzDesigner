@@ -33,6 +33,9 @@
             {% endif %}
                 <p class="card-text text-xl-center"> Score final : {{ partie.score }} / {{ nb_points_quizz }}</p>
             </div>
+                <div class="row justify-content-center">
+                <button class="btn btn-info"><i class="fa fa-reply-all"></i> Quitter</button>
+                </div>
             <p class="card-text"><small class="text-muted">Dernière modification du quizz le {{ quizz.updatedAt.format('d/m/Y') }}.</small></p>
         </div>
     </div>

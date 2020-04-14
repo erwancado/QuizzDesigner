@@ -1,9 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %} {{ quizz.nom }} {% endblock %}
-{% block header %}
-    {{ parent() }}
-{% endblock %}
+{% block header %}{{ parent() }}{% endblock %}
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 {% block body %}
 <style>
@@ -20,14 +18,14 @@
             </div>
         </div>
     </div>
-    <div class="card mb-3 bg-light">
+    <div class="card mb-3 bg-secondary">
         {% if quizz.filename %}
-        <img src="{{ vich_uploader_asset(quizz,'imgFile') }}" class="card-img-top" alt="{{ quizz.nom }}" style="width: 100%;height: auto">
+        <img src="{{ vich_uploader_asset(quizz,'imgFile') }}" class="card-img-top" alt="{{ quizz.nom }}" style="width: 100%;height: auto;max-height: 50vh">
         {% endif %}
-        <div class="card-body text-dark">
+        <div class="card-body text-white">
             <div class="row justify-content-between">
-                <h5 class="card-title text-primary"> Thème : {{ quizz.theme.nom }}</h5>
-                <h5 class="card-title text-primary"> Difficulté du Quizz : {{ quizz.difficulte }}</h5>
+                <h5 class="card-title text-white"> Thème : {{ quizz.theme.nom }}</h5>
+                <h5 class="card-title text-white"> Difficulté du Quizz : {{ quizz.difficulte }}</h5>
             </div>
             <div class="row justify-content-around">
                 <p class="card-text"> Score actuel : {{ partie.score }} / {{ nb_points_quizz }}</p>
@@ -37,31 +35,42 @@
         </div>
     </div>
     <!-- Card -->
-    <div class="card bg-white question-div" data-is-qcm="{{ question.type=="QCM" ? 'true':'false' }}" data-infos-qcm="{{ points | json_encode }}">
+    <div class="card bg-secondary question-div" data-is-qcm="{{ question.type=="QCM" ? 'true':'false' }}" data-infos-qcm="{{ points | json_encode }}" data-check-limit="{{ nb_reponses | json_encode }}">
 
         <!-- Card image -->
         <div class="view overlay">
             {% if question.filename %}
             <img class="card-img-top" src="{{ vich_uploader_asset(question,'imageFile') }}"
-                 alt="{{question.libelle}}">
+                 alt="{{question.libelle}}" style="width: 100%;height: auto; max-height: 40vh">
             {% endif %}
             <div class="mask rgba-white-slight"></div>
         </div>
 
         <!-- Card content -->
-        <div class="card-body text-secondary answers-div">
-
+        {% if question.type == "QCM" %}
+        <div class="card-body text-white answers-div" id="answers">
+        {% else %}
+        <div class="card-body text-white answers-div" id="answers" data-lib-correct="{{ libelle | escape('html') }}">
+        {% endif %}
             <!-- Title -->
-            <h4 class="card-title text-dark">{{ question.libelle }}</h4>
-            <!-- Text -->
-            {% if question.type == "QCM" %}
-                <p class="card-text">{{ question.aide }}</p>
-            {% endif %}
+            <div class="row justify-content-center">
+                <h4 class="card-title text-white">
+                    {{ question.libelle }}
+                {% if question.aide %}
+                <button type="button" class="btn btn-secondary" style="background-color: transparent; padding: 0; border: 0"
+                        data-toggle="tooltip" data-placement="top" data-html="true" title="<p>{{ question.aide }}</p>">
+                    <i class="fas fa-question-circle"></i>
+                </button>
+                {% endif %}
+                </h4>
+            </div>
             {{ form(form) }}
             {% if question.type == "QCM" %}
             <div class="row justify-content-end">
                 <button class="btn btn-success" id="validation"><i class="fa fa-check"></i> Valider ma réponse</button>
             </div>
+            {% else %}
+                <button class="btn btn-success" id="validation"><i class="fa fa-check"></i> Valider ma réponse</button>
             {% endif %}
         </div>
     </div>

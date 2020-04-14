@@ -61,9 +61,11 @@
                         <a href="{{ path('game',{id : quizz.id}) }}">
                             <div class="card text-center quizzLink">
                                 {% if quizz.filename %}
-                                    <img class="card-img-top" src="{{ vich_uploader_asset(quizz, 'imgFile') }}" alt="Card image">
+                                    <img class="card-img-top" src="{{ vich_uploader_asset(quizz, 'imgFile') }}" alt="Card image" style="width: auto;height: 100%">
+                                {% elseif quizz.theme.filename %}
+                                    <img class="card-img-top" src="{{ vich_uploader_asset(quizz.theme, 'imgFile') }}" alt="Card image" style="width: auto;height: 100%">
                                 {% else %}
-                                    <img class="card-img-top" src="{{ vich_uploader_asset(quizz.theme, 'imgFile') }}" alt="Card image">
+                                    <img class="card-img-top" src="{{asset('images/logo-quizz-designer.JPG') }}" alt="Card image" style="width: auto;height: 100%">
                                 {% endif %}
                                 <div class="card-img-overlay">
                                     <h2 class="card-title">{{ quizz.nom }}</h2>

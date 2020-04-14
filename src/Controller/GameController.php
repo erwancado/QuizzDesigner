@@ -36,10 +36,11 @@ class GameController extends AbstractController
         $nb_points_quizz=0;
         $nb_bonnes_reponses=0;
         $points=array();
+        $new_partie=$partie==null;
         foreach ($questions as $q){
             $nb_points_quizz+=$q->getNbPoints();
         }
-        if($partie==null){
+        if($new_partie){
             $partie=new Partie();
             $partie->setUser($user);
             $partie->setQuiz($quizz);
@@ -52,6 +53,7 @@ class GameController extends AbstractController
             $partie->setQuestionInProgress(array_values($questions)[0]);
         }
         else{
+            $questions=clone $questions;
             foreach ($partie->getQuestionsDone() as $q){
                 $questions->removeElement($q);
             }
@@ -78,7 +80,7 @@ class GameController extends AbstractController
             }
         }
         else{
-            $form->add('reponse',TextType::class,['help'=>$question->getAide()]);
+            $form->add('reponse',TextType::class,['label'=>'Votre réponse']);
         }
 
         $form->add('suivant', SubmitType::class,[
@@ -110,7 +112,8 @@ class GameController extends AbstractController
             {
                 $partie->setQuestionInProgress(array_values($questions)[1]);
                 $partie->addQuestionsDone($question);
-                $entitymanager->persist($partie);
+                if($new_partie)
+                    $entitymanager->persist($partie);
                 $entitymanager->flush();
                 return $this->redirectToRoute('game',['id'=>$quizz->getId()]);
             }
@@ -120,7 +123,6 @@ class GameController extends AbstractController
                 foreach ($partie->getQuestionsDone() as $q){
                     $partie->removeQuestionsDone($q);
                 }
-                $entitymanager->persist($partie);
                 $entitymanager->flush();
                 return $this ->render('game/end.html.twig',[
                     'controller_name' => 'GameController',
@@ -139,13 +141,14 @@ class GameController extends AbstractController
             'nb_questions_restantes'=>$nb_questions_restantes,
             'nb_reponses'=>$nb_bonnes_reponses,
             'points'=>$points,
+            'libelle'=>$question->getReponses()->first()->getLibelle(),
             'form'=>$form->createView()
         ]);
     }
     private function transform_string($str){
         $str=strtolower($str);
-        setlocale(LC_ALL, "en_US.utf8");
-        $str = iconv("utf-8", "ascii//TRANSLIT", $str);
-        return $str;
+        $search = explode(",","ç,æ,œ,á,é,í,ó,ú,à,è,ì,ò,ù,ä,ë,ï,ö,ü,ÿ,â,ê,î,ô,û,å,e,i,ø,u");
+        $replace = explode(",","c,ae,oe,a,e,i,o,u,a,e,i,o,u,a,e,i,o,u,y,a,e,i,o,u,a,e,i,o,u");
+        return str_replace($search, $replace, $str);
     }
 }
