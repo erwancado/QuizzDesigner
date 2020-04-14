@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
             correct_reponse=correct_reponse.toLowerCase();
             submit_reponse=submit_reponse.toLowerCase();
             if(submit_reponse===correct_reponse){
+                inputDiv.value=libelle_reponse;
                 inputDiv.classList.add("alert");
                 inputDiv.classList.add("alert-success");
             }
