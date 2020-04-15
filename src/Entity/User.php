@@ -263,4 +263,12 @@ class User implements UserInterface
 
         return $this;
     }
+    public function partieEnCours(int $idQuiz):bool {
+        foreach ($this->getParties() as $partie){
+            if($partie->getQuiz()->getId()===$idQuiz AND $partie->getEtat()==0){
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Historique de jeu{% endblock %}
+{% block header %} {{ parent() }} {% endblock %}
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 80vw; width: 95%; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+    <div class="table-responsive{-sm|-md|-lg|-xl} example-wrapper">
+    <table class="table table-dark table-striped table-bordered table-hover">
+        <thead class="text-xl-center text-primary" style="font-size: x-large">
+        <tr>
+            <th scope="col">
+                Date
+            </th>
+            <th scope="col">
+                Quizz
+            </th>
+            <th scope="col">
+                Thème
+            </th>
+            <th scope="col">
+                Score
+            </th>
+            <th scope="col">
+                Etat
+            </th>
+            <th scope="col">
+                Jouer
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+
+            {% for partie in parties %}
+            <tr class="text-center">
+                <th scope="row" class="text-info">{{ partie.date.format('d/m/Y') }}</th>
+                <td>{{ partie.quiz.nom }}</td>
+                <td>{{ partie.quiz.theme.nom }}</td>
+                <td>
+                    {% if partie.etat == 1 %}
+                        {% if (partie.score / partie.quiz.nbPoints) < 0.3 %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ partie.score }}/{{ partie.quiz.nbPoints }}
+                        </div>
+                        {% elseif (partie.score / partie.quiz.nbPoints) > 0.6 %}
+                        <div class="alert alert-success" role="alert">
+                            {{ partie.score }}/{{ partie.quiz.nbPoints }}
+                        </div>
+                        {% else %}
+                        <div class="alert alert-warning" role="alert">
+                            {{ partie.score }}/{{ partie.quiz.nbPoints }}
+                        </div>
+                        {% endif %}
+                    {% else %}
+                        <div class="alert alert-info" role="alert">
+                            {{ partie.score }}/{{ partie.quiz.nbPoints }}
+                        </div>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if partie.etat==0 %}
+                        En cours
+                    {% else %}
+                        Terminée
+                    {% endif %}
+                </td>
+                <td>
+                    {% if partie.user.partieEnCours(partie.quiz.id) %}
+                        <a href="{{ path('game',{id : partie.quiz.id}) }}" class="btn btn-primary">
+                            <i class="fa fa-play" aria-hidden="true"></i> Continuer
+                        </a>
+                    {% else %}
+                        <a href="{{ path('game',{id : partie.quiz.id}) }}" class="btn btn-info">
+                            <i class="fa fa-play" aria-hidden="true"></i> Rejouer
+                        </a>
+                    {% endif %}
+
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

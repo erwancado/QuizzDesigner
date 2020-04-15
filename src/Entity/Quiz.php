@@ -265,5 +265,12 @@ class Quiz implements \Serializable
 
     }
 
+    public function getNbPoints() : int {
+        $nb_points=0;
+        foreach ($this->getQuestions() as $q){
+            $nb_points+=$q->getNbPoints();
+        }
+        return $nb_points;
+    }
 
 }

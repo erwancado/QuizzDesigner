@@ -17,14 +17,14 @@
             </div>
         </div>
     </div>
-    <div class="card mb-3 bg-light">
+    <div class="card mb-3 bg-secondary">
         {% if quizz.filename %}
             <img src="{{ vich_uploader_asset(quizz,'imgFile') }}" class="card-img-top" alt="{{ quizz.nom }}" style="width: 100%;height: auto">
         {% endif %}
-        <div class="card-body text-dark">
+        <div class="card-body text-white">
             <div class="row justify-content-between">
-                <h5 class="card-title text-primary"> Thème : {{ quizz.theme.nom }}</h5>
-                <h5 class="card-title text-primary"> Difficulté du Quizz : {{ quizz.difficulte }}</h5>
+                <h5 class="card-title text-white"> Thème : {{ quizz.theme.nom }}</h5>
+                <h5 class="card-title text-white"> Difficulté du Quizz : {{ quizz.difficulte }}</h5>
             </div>
             {% if (partie.score / nb_points_quizz) > 0.5 %}
             <div class="row justify-content-around alert alert-success" role="alert">
