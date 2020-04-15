@@ -7,7 +7,7 @@
     <div class="row justify-content-around">
         {% for theme in themes %}
             <div class="card quizzCard col-3 quizzCardContent align-self-start">
-                <img class="imgBack" src="{{ vich_uploader_asset(theme, 'imgFile') }}" alt="">
+                <img class="card-img-top" src="{{ vich_uploader_asset(theme, 'imgFile') }}" alt="" style="height: 150px; width: 100%">
                 <div class="row card-img-overlay">
                     <div class="card-title col-12">
                         <h2>{{ theme.nom }}</h2>
@@ -20,18 +20,33 @@
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <a class="dropdown-item" href="{{ path('modify_theme', {id : theme.id}) }}"><i class="fas fa-edit"></i> Modifier</a>
-                        <a class="dropdown-item" style="color: red" href="{{ path('delete_theme', {id : theme.id}) }}"><i class="fas fa-trash"></i> Supprimer</a>
+                        <button type="button" class=" dropdown-item btn btn-outline-danger text-danger" data-toggle="modal" data-target="#suppressionModal-{{ theme.id }}">
+                            <i class="fas fa-trash"></i> Supprimer
+                        </button>
                     </div>
                 </div>
             </div>
-            {#<div class="card quizzCard col-3 quizzCardContent align-self-start">
-                <div class="row">
-                    <div class="card-title col-12">
-                        <h2>{{ theme.nom }}</h2>
+
+            <div class="modal fade" id="suppressionModal-{{ theme.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-danger text-center" id="exampleModalLabel">Supprimer le thème "{{ theme.nom }}" ?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body text-dark">
+                            <p>La suppression d'un thème entrainera la suppression des quizzes qui sont associés.</p>
+                            <p>Voulez vous continuer ?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                            <a href="{{ path('delete_theme', {id : theme.id}) }}" id="deleteButton"><button type="button" class="btn btn-danger" >Supprimer</button></a>
+                        </div>
                     </div>
                 </div>
-                <a href="{{ path('delete_theme', {id : theme.id}) }}" class="deleteButton"><button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></a>
-            </div>#}
+            </div>
         {% endfor %}
     </div>
 </div>

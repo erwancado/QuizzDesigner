@@ -48,7 +48,6 @@
                             </div>
                         </div>
                     {% endfor %}
-                    <h1 style="color: red"></h1>
                 </div>
                 <buttton class="hide btn btn-outline-light" id="showAllQuizzes">Montrer tous les quizzes</buttton>
 
@@ -59,9 +58,54 @@
             <div class="row justify-content-start">
 
                 {% for quizz in quizzList %}
-                    <div class="col-4 quizzImgCard" data-theme="{{ quizz.theme.nom }}">
+                    <div class="container col-4 quizz" data-theme="{{ quizz.theme.nom }}">
                         <a href="{{ path('game',{id : quizz.id}) }}">
-                            <div class="card text-center quizzLink">
+                            <div class="card bg-secondary quizzImgCard">
+                                {% if quizz.filename %}
+                                    <img class="imgBack" src="{{ vich_uploader_asset(quizz, 'imgFile') }}" alt="Card image">
+                                {% elseif quizz.theme.filename %}
+                                    <img class="imgBack" src="{{ vich_uploader_asset(quizz.theme, 'imgFile') }}" alt="Card image">
+                                {% else %}
+                                    <img class="imgBack" src="{{asset('images/logo-quizz-designer.JPG') }}" alt="Card image">
+                                {% endif %}
+                                <div class="card-body">
+                                    <h2 class="card-title text-center">{{ quizz.nom }}</h2>
+                                    <h5 class="card-title text-center">{{ quizz.theme.nom }}</h5>
+                                    <hr>
+                                    <div class="row">
+                                        <p class="col-4">Difficulté : {{ quizz.difficulte }}</p>
+                                        <p class="col-8">Nombre de questions : {{ quizz.questions | length }}</p>
+                                    </div>
+                                    {% if quizz.LastPartie(user.id) %}
+                                        <p>Dernière partie : {{ quizz.LastPartie(user.id).date | date("d/m/Y") }}</p>
+                                        {% if quizz.LastPartie(user.id).Etat == 1 %}
+                                            <div class="row">
+                                                <p class="col-6">État : <span class="text-success">Terminé</span></p>
+                                                <p class="col-6">Score :
+                                                    {% if quizz.LastPartie(user.id).score > quizz.NbPoints*0.6 %}
+                                                        <span class="text-success">{{ quizz.LastPartie(user.id).score }}</span>
+                                                    {% elseif quizz.LastPartie(user.id).score > quizz.NbPoints*0.4 and quizz.LastPartie(user.id).score < quizz.NbPoints*0.6 %}
+                                                        <span class="text-warning">{{ quizz.LastPartie(user.id).score }}</span>
+                                                    {% else %}
+                                                        <span class="text-danger">{{ quizz.LastPartie(user.id).score }}</span>
+                                                    {% endif %}
+                                                    /{{ quizz.NbPoints }}</p>
+                                            </div>
+                                        {% else %}
+                                            <div class="row">
+                                                <p class="col-6">État : <span class="text-info">En cours</span></p>
+                                                <p class="col-6">Score : {{ quizz.LastPartie(user.id).score }}/{{ quizz.NbPoints }}</p>
+                                            </div>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    {#<div class="col-4 quizzImgCard" data-theme="{{ quizz.theme.nom }}">
+                        <a href="{{ path('game',{id : quizz.id}) }}">
+                            <div class="card quizzLink">
                                 {% if quizz.filename %}
                                     <img class="imgBack" src="{{ vich_uploader_asset(quizz, 'imgFile') }}" alt="Card image" style="width: auto;height: 100%">
                                 {% elseif quizz.theme.filename %}
@@ -69,9 +113,9 @@
                                 {% else %}
                                     <img class="imgBack" src="{{asset('images/logo-quizz-designer.JPG') }}" alt="Card image" style="width: auto;height: 100%">
                                 {% endif %}
-                                <div class="card-img-overlay">
+                                <div class="card-body">
                                     <h2 class="card-title">{{ quizz.nom }}</h2>
-                                    <div class="quizz-card-content">
+                                    <div class="">
                                         <h4> {{ quizz.theme.nom }}</h4>
                                         <h4> Difficulté : {{ quizz.difficulte }}</h4>
                                         <h4> Nombre de questions : {{ quizz.questions | length }}</h4>
@@ -79,7 +123,7 @@
                                 </div>
                             </div>
                         </a>
-                    </div>
+                    </div>#}
                 {% endfor %}
             </div>
         </div>

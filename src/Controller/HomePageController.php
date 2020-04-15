@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Partie;
 use App\Entity\Quiz;
 use App\Entity\Theme;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,6 +17,7 @@ class HomePageController extends AbstractController
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
+        $user = $this->getUser();
         $quizzList = $this->getDoctrine()->getRepository(Quiz::class)->findAll();
         $themes = $this->getDoctrine()->getRepository(Theme::class)->findAll();
 
@@ -24,10 +26,16 @@ class HomePageController extends AbstractController
             array_push($themeList, $t);
         }
         shuffle($themeList);
-        array_pop($themeList);
+
+        while(sizeof($themeList) > 8){
+            array_pop($themeList);
+        }
+
 
         return $this->render('home_page/index.html.twig', [
             'controller_name' => 'HomePageController',
+            'user' => $user,
+            /*'lastPartie' => $lastPartie,*/
             'quizzList' => $quizzList,
             'themeList' => $themeList
         ]);

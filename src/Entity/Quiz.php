@@ -273,4 +273,22 @@ class Quiz implements \Serializable
         return $nb_points;
     }
 
+    public function getLastPartie(int $userID) : ?Partie{
+        $parties = $this->getParties();
+
+        if (sizeof($parties) == 0){
+            return null;
+        }
+
+        $lastPartie = new Partie();
+        foreach ($parties as $partie){
+            if ($partie->getUser()->getId() == $userID){
+                if ($partie->getDate() > $lastPartie->getDate()){
+                    $lastPartie = $partie;
+                }
+            }
+        }
+        return $lastPartie;
+    }
+
 }

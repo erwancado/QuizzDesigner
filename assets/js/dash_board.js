@@ -21,15 +21,13 @@ $('#myThemeButton').on('click', function () {
             themeTemplate.fadeIn();
         })
     }
-
 });
 
 $(document).ready(function () {
-
     if($('#flash-message') !== null){
         setTimeout(function () {
             $('#flash-message').fadeOut();
         }, 5000);
     }
-
 });
+
