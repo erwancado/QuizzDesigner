@@ -15,7 +15,6 @@ $(function () {
 
 $(document).on('change', '.custom-file-input', function (event) {
     $(this).next('.custom-file-label').text(event.target.files[0].name);
-    console.log(event.target.files[0]);
 });
 
 document.getElementById("newQO").addEventListener('click',function () {

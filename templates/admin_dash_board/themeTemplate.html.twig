@@ -7,7 +7,7 @@
     <div class="row justify-content-around">
         {% for theme in themes %}
             <div class="card quizzCard col-3 quizzCardContent align-self-start">
-                <img class="card-img-top imgCard" src="{{ vich_uploader_asset(theme, 'imgFile') }}" alt="">
+                <img class="imgBack" src="{{ vich_uploader_asset(theme, 'imgFile') }}" alt="">
                 <div class="row card-img-overlay">
                     <div class="card-title col-12">
                         <h2>{{ theme.nom }}</h2>

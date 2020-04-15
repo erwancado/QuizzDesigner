@@ -41,31 +41,33 @@
             <div class="contenu_carou">
                 <div class="caroussel">
                     {% for theme in themeList %}
-                        <div class="card text-center carouselCard">
+                        <div class="card text-center carouselCard" data-theme="{{ theme.nom }}">
                             <img class="" src="{{vich_uploader_asset(theme, 'imgFile')}}">
                             <div class="card-img-overlay">
                                 <h1>{{ theme.nom }}</h1>
                             </div>
                         </div>
-
                     {% endfor %}
+                    <h1 style="color: red"></h1>
                 </div>
+                <buttton class="hide btn btn-outline-light" id="showAllQuizzes">Montrer tous les quizzes</buttton>
+
             </div>
         </div>
 
         <div class="container quizzList">
-            <div class="row justify-content-between">
+            <div class="row justify-content-start">
 
                 {% for quizz in quizzList %}
-                    <div class="col-4 quizzImgCard">
+                    <div class="col-4 quizzImgCard" data-theme="{{ quizz.theme.nom }}">
                         <a href="{{ path('game',{id : quizz.id}) }}">
                             <div class="card text-center quizzLink">
                                 {% if quizz.filename %}
-                                    <img class="card-img-top" src="{{ vich_uploader_asset(quizz, 'imgFile') }}" alt="Card image" style="width: auto;height: 100%">
+                                    <img class="imgBack" src="{{ vich_uploader_asset(quizz, 'imgFile') }}" alt="Card image" style="width: auto;height: 100%">
                                 {% elseif quizz.theme.filename %}
-                                    <img class="card-img-top" src="{{ vich_uploader_asset(quizz.theme, 'imgFile') }}" alt="Card image" style="width: auto;height: 100%">
+                                    <img class="imgBack" src="{{ vich_uploader_asset(quizz.theme, 'imgFile') }}" alt="Card image" style="width: auto;height: 100%">
                                 {% else %}
-                                    <img class="card-img-top" src="{{asset('images/logo-quizz-designer.JPG') }}" alt="Card image" style="width: auto;height: 100%">
+                                    <img class="imgBack" src="{{asset('images/logo-quizz-designer.JPG') }}" alt="Card image" style="width: auto;height: 100%">
                                 {% endif %}
                                 <div class="card-img-overlay">
                                     <h2 class="card-title">{{ quizz.nom }}</h2>

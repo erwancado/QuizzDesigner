@@ -1,10 +1,18 @@
 @import "variables";
 
+#showAllQuizzes:hover p{
+  color: red;
+}
+
 .carouselCard{
   min-height: 300px;
   max-height: 300px;
   min-width: 500px;
   max-width: 500px;
+}
+
+.carouselCard:hover img{
+  opacity: 0.7!important;
 }
 
 .carouselCard img{
@@ -26,10 +34,11 @@
 
 .quizzLink{
   max-height: 200px;
+  min-height: 200px;
   box-shadow: 0 12px 6px -6px $shadowColor;
 }
 
-.quizzLink:hover .card-img-top{
+.quizzLink:hover .imgBack{
   opacity: 0.7!important;
 }
 
