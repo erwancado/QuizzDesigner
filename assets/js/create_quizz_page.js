@@ -34,7 +34,7 @@ function addQuestion(qcm){
     var fileInput = createElement("input",{"type":"file","class":"custom-file-input","name":"customFile".concat(idQuestion)});
     var fileLabel = createElement("label",{"class":"custom-file-label","for":"customFile".concat(idQuestion)},"Ajouter une image");
     var divFile = createElement("div",{"class":"custom-file col-3"},[fileInput,fileLabel]);
-    var questionInput = createElement("input",{"type":"text" ,"placeholder":"Question" ,"class":"col-11","name":"QuestionText".concat(idQuestion)});
+    var questionInput = createElement("input",{"type":"text" ,"placeholder":"Question" ,"class":"col-11","required":"","name":"QuestionText".concat(idQuestion)});
     var divQuestion = createElement("div",{"class":"col-7"},questionInput);
     var deleteQuestionButton = createElement("button",{"type":"button","class":"btn btn-danger","id":"btn-del-".concat(idQuestion)},"Supprimer");
     deleteQuestionButton.addEventListener('click',function () {
@@ -58,7 +58,7 @@ function addQuestion(qcm){
     else{
         var helpInput=createElement("input",{"type":"text" ,"placeholder":"Indice" ,"class":"col-12","name":"QuestionHelp".concat(idQuestion)});
         var col1 = createElement("div",{"class":"col-6"},helpInput);
-        var questionPointsInput = createElement("input",{"id":"nb-points-Q".concat(idQuestion),"type":"number","class":"col-10","placeholder":"Nombre de points","min":"1", "max":"50" ,"name":"QuestionDifficulty".concat(idQuestion)});
+        var questionPointsInput = createElement("input",{"id":"nb-points-Q".concat(idQuestion),"type":"number","value":"1","class":"col-10","placeholder":"Nombre de points","min":"1", "max":"50" ,"name":"QuestionDifficulty".concat(idQuestion)});
         questionPointsInput.addEventListener('input',function () {
             updatePoints(idQuestion);
         });
@@ -72,7 +72,7 @@ function addQuestion(qcm){
         var labelSwitch = createElement("label",{"class":"switch col-1.5"},[pointsSwitch,spanSwitch]);
         var row2 = createElement("div",{"class":"row mt-2"},[col1,col2,divTextSwitch,labelSwitch]);
         var answers = renderAnswer(idQuestion,1);
-        var row3 = createElement("div",{"class":"row mt-2","id":"answersQ".concat(idQuestion)},answers);
+        var row3 = createElement("div",{"class":"row mt-2 answers-container","id":"answersQ".concat(idQuestion)},answers);
         var imgAddButton = createElement("i",{"class":"fas fa-plus"});
         var addQuestionButton = createElement("button",{"type":"button","class":"btn btn-primary col-12","id":"addAnswerQ".concat(idQuestion)},[imgAddButton," Ajouter une réponse"]);
         addQuestionButton.addEventListener('click',function () {
@@ -80,7 +80,7 @@ function addQuestion(qcm){
         });
         var divQB = createElement("div",{"class":"col-3"},addQuestionButton);
         var row4 = createElement("div",{"class":"row mt-2 justify-content-center"},divQB);
-        var divContainer=createElement("div",{"class":"container"},[row1,row2,row3,row4]);
+        var divContainer=createElement("div",{"class":"container","id":"innerQCM".concat(idQuestion)},[row1,row2,row3,row4]);
         var divJumbotron=createElement("div",{"class":"jumbotron jumbotron-fluid"},[divContainer]),
             divQuestion=createElement("div",{"id":"question".concat(idQuestion),"class":"questionCard"},[divJumbotron]);
         container.appendChild(divQuestion);
@@ -109,7 +109,7 @@ function renderAnswer(idQuestion,idAnswer) {
     });
     var divSwitch = createElement("label",{"class":"switch col-1.5"},[checkbox,spanSwitch]);
     var span1 = createElement("span",{"class":"col-1"});
-    var answerInput = createElement("input",{"type":"text","placeholder":"Réponse","class":"form-control col-8 answer-text","name":"txt-Q".concat(idQuestion).concat("-A").concat(idAnswer)});
+    var answerInput = createElement("input",{"type":"text","placeholder":"Réponse","required":"","class":"form-control col-8 answer-text","name":"txt-Q".concat(idQuestion).concat("-A").concat(idAnswer)});
     var col1=createElement("div",{"class":"col-7 form-check form-check-inline"},[divSwitch,span1,answerInput]);
     var pointsInput=createElement("input",{"type":"number","readonly":"","class":"col-4 answer-points","placeholder":"Points","min":"0","max":"50","name":"points-Q".concat(idQuestion).concat("-A").concat(idAnswer)});
     pointsInput.addEventListener('input',function () {
