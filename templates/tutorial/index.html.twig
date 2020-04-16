@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tutorial{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    <div class="example-wrapper">
+        <div class="text-center" id="top">
+            <h1>Bienvenue sur QuizzDesigner ! </h1>
+            <h4>Cette page vous présente les différentes fonctionnalités de notre site</h4>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div class="container">
+            <div class="row justify-content-around text-center">
+                <a class="col-6" data-toggle="pill" href="#home"><button type="button" class="btn btn-outline-light">Tutorial pour utilisateur</button></a>
+                <a class="col-6" data-toggle="pill" href="#menu1"><button type="button" class="btn btn-outline-light">Tutorial pour administrateur</button></a>
+            </div>
+        </div>
+        <br>
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+                {{include(userTuto)}}
+            </div>
+            <div id="menu1" class="tab-pane fade">
+                {{include(adminTuto)}}
+            </div>
+        </div>
+        <div id="scrollUp">
+            <button type="button" class="btn btn-dark" style="font-size: large"><i class="fas fa-arrow-up"></i></button>
+
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('tutorial')}}
+{% endblock %}
