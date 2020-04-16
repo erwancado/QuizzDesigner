@@ -35,6 +35,7 @@ Encore
     .addEntry('home_page', './assets/js/home_page.js')
     .addEntry('create_quizz_page_validation', './assets/js/create_quizz_page_validation.js')
     .addEntry('game', './assets/js/game.js')
+    .addEntry('tutorial', './assets/js/tutorial.js')
     //.addEntry('page2', './assets/js/page2.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
