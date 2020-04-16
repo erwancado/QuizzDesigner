@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Partie;
 use App\Entity\Quiz;
 use App\Entity\Theme;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -16,8 +17,8 @@ class HomePageController extends AbstractController
     public function index()
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-
-        $user = $this->getUser();
+        $user = $this->getUser()->getUsername();
+        $user=$this->getDoctrine()->getRepository(User::class)->findOneBy(array('email'=>$user));
         $quizzList = $this->getDoctrine()->getRepository(Quiz::class)->findAll();
         $themes = $this->getDoctrine()->getRepository(Theme::class)->findAll();
 
@@ -36,7 +37,8 @@ class HomePageController extends AbstractController
             'controller_name' => 'HomePageController',
             'user' => $user,
             'quizzList' => $quizzList,
-            'themeList' => $themeList
+            'themeList' => $themeList,
+            'themes'=>$themes
         ]);
     }
 }
