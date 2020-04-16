@@ -22,20 +22,23 @@
                 <div {#class="collapse navbar-collapse" id="exCollapsingNavbar"#}>
                     <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
                         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                            <div class="dropdown">
+                            <div class="dropdown" data-container="body" data-toggle="popover" data-trigger="hover" data-content="Permet d'accéder à vos quizz, vos thèmes, votre historique de parties, ainsi que de vous déconnecter.">
                                 <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-user"></i>  {{app.user.prenom}}
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     {% if app.user.roles[0] == "ROLE_ADMIN" %}
                                         {% if controller_name == "HomePageController" %}
-                                            <a class="dropdown-item" href="{{ path('admin_dash_board')}}">Dash Board</a>
+                                            <a class="dropdown-item" href="{{ path('admin_dash_board')}}" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="Accéder à vos thèmes et quizz.">Dash Board</a>
                                         {% else %}
                                             <a class="dropdown-item" href="{{ path('home_page')}}">Accueil</a>
                                         {% endif %}
                                     {% endif %}
-                                    <a class="dropdown-item" href="{{ path('scores_board') }}">Historique des parties</a>
-                                    <a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
+                                    <a class="dropdown-item" href="{{ path('scores_board') }}" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="Accéder à l'historique de vos parties.">Historique des parties</a>
+                                    <button class="btn text-primary dropdown-item" id="help-switch" value="" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="Désactiver les bulles d'aide comme celle-ci.">
+                                        Activer l'aide
+                                    </button>
+                                    <a class="dropdown-item text-danger" href="{{ path('app_logout') }}">Déconnexion</a>
                                 </div>
                             </div>
                         {% endif %}

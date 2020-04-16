@@ -7,10 +7,27 @@
 
 // any CSS you import will output into a single css file (app.scss in this case)
 import '../css/app.scss';
+import $ from "jquery";
+require('popper.js');
 require('bootstrap');
 require('@fortawesome/fontawesome-free/css/all.min.css');
 require('@fortawesome/fontawesome-free/js/all.js');
 require('bootstrap4-toggle');
 
-// Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
-import $ from 'jquery';
+$(function () {
+    document.getElementById('help-switch').addEventListener('click',function () {
+        if(this.innerText==="Désactiver l'aide"){
+            $('[data-toggle="popover"]').popover('hide');
+            $('[data-toggle="popover"]').popover('disable');
+            $('[data-toggle="popover"]').popover('dispose');
+            this.innerText="Activer l'aide";
+            this.classList.replace("text-info","text-primary");
+        }
+        else{
+            $('[data-toggle="popover"]').popover();
+            this.innerText="Désactiver l'aide";
+            this.classList.replace("text-primary","text-info");
+        }
+
+    });
+});
