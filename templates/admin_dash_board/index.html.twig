@@ -13,8 +13,8 @@
     <div class="example-wrapper">
         <div class="row">
             <ul class="list-group list-group-flush col-xl-2 col-sm-4 text-center">
-                <button type="button" id="myQuizButton" class="btn list-group-item list-group-item-action"><h1>Quiz  <span class="badge badge-pill badge-light">{{ quizzes|length }}</span></h1></button>
-                <button type="button" id="myThemeButton" class="btn list-group-item list-group-item-action"><h1>Themes <span class="badge badge-pill badge-light">{{ themes|length }}</span></h1></button>
+                <button type="button" id="myQuizButton" class="btn list-group-item list-group-item-action" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="Voir la liste des quizz que vous avez créé."><h1>Quiz  <span class="badge badge-pill badge-light">{{ quizzes|length }}</span></h1></button>
+                <button type="button" id="myThemeButton" class="btn list-group-item list-group-item-action" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="Voir la liste des thèmes que vous avez créé."><h1>Themes <span class="badge badge-pill badge-light">{{ themes|length }}</span></h1></button>
             </ul>
             <div class="col-xl-10 col-sm-8" style="padding: 0">
                 <div id="quizTemplate" {% if hide != "" and hide == "quizz" %} class="hide" {% endif %}>

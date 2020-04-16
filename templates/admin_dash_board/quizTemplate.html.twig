@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row justify-content-around">
         <h1 class="col-8">Mes Quiz :</h1>
-        <a class="col-1.5" href="{{ path('create_quizz_page') }}"><button type="button" class="btn btn-success"><i class="fas fa-plus"></i> Créer Quiz</button></a>
+        <a class="col-1.5" href="{{ path('create_quizz_page') }}"><button type="button" class="btn btn-success" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="Clique ici pour accéder à la page de création de quizz."><i class="fas fa-plus"></i> Créer Quiz</button></a>
     </div>
     <br>
     <div class="row">
@@ -11,7 +11,7 @@
                     <div class="row align-items-center">
                         <div class="card-title col-5">
                             <a href="{{ path('game',{id : quizz.id}) }}">
-                                <h1 style="color: white">{{ quizz.nom }}</h1>
+                                <h1 style="color: white" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="Clique ici pour jouer à ce quizz.">{{ quizz.nom }}</h1>
                             </a>
                         </div>
                         <h5 class="col-4">Difficulté : {{ quizz.difficulte }}</h5>

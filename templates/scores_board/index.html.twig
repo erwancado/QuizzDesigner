@@ -68,11 +68,11 @@
                 </td>
                 <td>
                     {% if partie.user.partieEnCours(partie.quiz.id) %}
-                        <a href="{{ path('game',{id : partie.quiz.id}) }}" class="btn btn-primary">
+                        <a href="{{ path('game',{id : partie.quiz.id}) }}" class="btn btn-primary"  data-container="body" data-toggle="popover" data-trigger="hover" data-content="Permet de reprendre la dernière partie.">
                             <i class="fa fa-play" aria-hidden="true"></i> Continuer
                         </a>
                     {% else %}
-                        <a href="{{ path('game',{id : partie.quiz.id}) }}" class="btn btn-info">
+                        <a href="{{ path('game',{id : partie.quiz.id}) }}" class="btn btn-info" data-container="body" data-toggle="popover" data-trigger="hover" data-content="Permet de démarrer une partie.">
                             <i class="fa fa-play" aria-hidden="true"></i> Rejouer
                         </a>
                     {% endif %}
