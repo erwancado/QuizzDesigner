@@ -57,5 +57,15 @@
 {% block javascripts %}
     {{ encore_entry_script_tags('app') }}
 {% endblock %}
+
+
+{% block footer %}
+    <footer class="mastfoot mt-auto border-top">
+        <div class="text-center">
+            <br>
+            <p>Copyright &copy; QuizzDesigner made by Erwan Cado & Nicolas Desclaux - <a href="{{ path('tutorial') }}" class="text-light"> Tutoriel </a></p>
+        </div>
+    </footer>
+{% endblock %}
 </body>
 </html>

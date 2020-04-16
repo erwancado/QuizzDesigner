@@ -2,7 +2,7 @@ import $ from 'jquery';
 
 $(document).ready(function() {
     console.log('Test');
-    var duration = 500;
+    var duration = 1000;
     $(window).scroll(function() {
         if ($(this).scrollTop() > 100) {
             console.log("Scroll !!");
@@ -22,5 +22,14 @@ $(document).ready(function() {
         event.preventDefault();
         $('html, body').animate({scrollTop: 0}, duration);
         return false;
+    });
+
+    $('#userTutobutton').on('click', function () {
+        $('#adminTutobutton').removeClass("active");
     })
+
+    $('#adminTutobutton').on('click', function () {
+        $('#userTutobutton').removeClass("active");
+    });
+
 });
