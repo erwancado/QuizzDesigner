@@ -275,20 +275,21 @@ class Quiz implements \Serializable
 
     public function getLastPartie(int $userID) : ?Partie{
         $parties = $this->getParties();
-
-        if (sizeof($parties) == 0){
-            return null;
-        }
+        $partie_found=false;
 
         $lastPartie = new Partie();
         foreach ($parties as $partie){
             if ($partie->getUser()->getId() == $userID){
                 if ($partie->getDate() > $lastPartie->getDate()){
                     $lastPartie = $partie;
+                    $partie_found=true;
                 }
             }
         }
-        return $lastPartie;
+        if($partie_found)
+            return $lastPartie;
+        else
+            return null;
     }
 
 }
