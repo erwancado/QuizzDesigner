@@ -1,0 +1,73 @@
+{
+  "entrypoints": {
+    "app": {
+      "js": [
+        "/build/runtime.1103dde6.js",
+        "/build/0.c0cf600b.js",
+        "/build/1.14e8285a.js",
+        "/build/app.ab358274.js"
+      ],
+      "css": [
+        "/build/app.7d393cb5.css"
+      ]
+    },
+    "create_quizz_page": {
+      "js": [
+        "/build/runtime.1103dde6.js",
+        "/build/0.c0cf600b.js",
+        "/build/2.df4697f0.js",
+        "/build/create_quizz_page.3d0b3b42.js"
+      ]
+    },
+    "word_animation": {
+      "js": [
+        "/build/runtime.1103dde6.js",
+        "/build/1.14e8285a.js",
+        "/build/word_animation.7cb691e2.js"
+      ]
+    },
+    "register_validation": {
+      "js": [
+        "/build/runtime.1103dde6.js",
+        "/build/0.c0cf600b.js",
+        "/build/register_validation.788bac59.js"
+      ]
+    },
+    "dash_board": {
+      "js": [
+        "/build/runtime.1103dde6.js",
+        "/build/0.c0cf600b.js",
+        "/build/dash_board.11d18488.js"
+      ]
+    },
+    "home_page": {
+      "js": [
+        "/build/runtime.1103dde6.js",
+        "/build/0.c0cf600b.js",
+        "/build/home_page.4cb3a2ee.js"
+      ]
+    },
+    "create_quizz_page_validation": {
+      "js": [
+        "/build/runtime.1103dde6.js",
+        "/build/0.c0cf600b.js",
+        "/build/create_quizz_page_validation.5f04f7fd.js"
+      ]
+    },
+    "game": {
+      "js": [
+        "/build/runtime.1103dde6.js",
+        "/build/0.c0cf600b.js",
+        "/build/1.14e8285a.js",
+        "/build/game.9ff80142.js"
+      ]
+    },
+    "tutorial": {
+      "js": [
+        "/build/runtime.1103dde6.js",
+        "/build/0.c0cf600b.js",
+        "/build/tutorial.9608afe4.js"
+      ]
+    }
+  }
+}
