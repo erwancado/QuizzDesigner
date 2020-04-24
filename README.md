@@ -12,3 +12,6 @@ Une fois votre base de données installée, lancez la commande suivante pour dé
 ```
 symfony server:start
 ```
+## Licence
+
+Ce projet est sous licence MIT - voir le fichier [LICENSE](LICENSE) pour plus de détails.
